@@ -1,0 +1,523 @@
+\documentclass[11pt]{article}
+
+\usepackage[inline]{enumitem}
+\usepackage{floatrow}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{wrapfig}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+%\input{math_commands.tex}
+\newcommand{\tc}[1]{\textcolor{magenta}{[Tiffany: {#1}]}}
+\usepackage{xcolor} %[dvipsnames]
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    pdfpagemode=FullScreen,
+    }
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cleveref}
+
+ \newcommand{\kwz}[1]{
+  {\color{violet} [{#1}]} %KWZ: 
+ }
+
+  \newcommand{\hn}[1]{
+  {\color{red} [HN: {#1}]}
+ }
+
+ \newcommand{\dan}[1]{
+  {\color{green} [Dan: {#1}]}
+ }
+\usepackage[textsize=tiny]{todonotes}
+\newcommand{\hntodo}[1]{\todo{Hong: #1}}
+\newcommand{\kwztodo}[1]{\todo{KWZ: #1}}
+
+\newcommand{\what}[1]{\widehat{#1}} % Wide hat
+ 
+\newcommand{\R}{\bs{\MC{R}}}
+\newcommand{\Rhat}{\bs{\hat{\MC{R}}}}
+\newcommand{\Dtrain}{\MC{D}^{\TN{offline}}}
+\newcommand{\Deval}{\MC{D}^{\TN{eval}}}
+\newcommand{\D}{\MC{D}}
+\newcommand{\Ahist}{\MC{A}^{\TN{offline}}}
+\newcommand{\Aeval}{\MC{A}}
+\newcommand{\Zeval}{\MC{Z}}
+\newcommand{\psar}{\mathbb{A}_{\TN{TS-Gen}}}
+\newcommand{\piX}{\bs{\pi}^*(X_{1:T})}
+
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+
+\usepackage{commands}
+\usepackage{comment}
+\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{algorithmic}
+
+\makeatletter
+\newcounter{phase}[algorithm]
+\newlength{\phaserulewidth}
+\newcommand{\setphaserulewidth}{\setlength{\phaserulewidth}}
+\newcommand{\phase}[1]{%
+  \vspace{-1.25ex}
+  % Top phase rule
+  \Statex\leavevmode\llap{\rule{\dimexpr\labelwidth+\labelsep}{\phaserulewidth}}\rule{\linewidth}{\phaserulewidth}
+  \Statex\strut\refstepcounter{phase}\textit{Phase~\thephase~--~#1}% Phase text
+  % Bottom phase rule
+  \vspace{-1.25ex}\Statex\leavevmode\llap{\rule{\dimexpr\labelwidth+\labelsep}{\phaserulewidth}}\rule{\linewidth}{\phaserulewidth}}
+\makeatother
+
+\setphaserulewidth{.7pt}
+
+% packages
+\usepackage[margin=1in]{geometry}
+%\usepackage{color}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{setspace}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{rotating}
+\usepackage{verbatim}
+\usepackage{bm}
+\usepackage[normalem]{ulem}
+\usepackage[square, numbers, sort]{natbib}
+\usepackage{bbm}
+\usepackage{array}
+\usepackage{float}
+\usepackage{authblk}
+
+\usepackage[perpage]{footmisc}
+
+% theorems
+\newtheorem{theorem}{Theorem} %[section]
+\newtheorem{lemma}{Lemma} %[theorem]
+\newtheorem{assumption}{Assumption} %[theorem]
+\newtheorem{corollary}{Corollary} %[theorem]
+\newtheorem{definition}{Definition} % DH: I changed this %[theorem]
+\theoremstyle{definition}
+\theoremstyle{plain}
+%\newtheorem{definition}{Definition} %[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+
+% Kelly's stuff
+\usepackage{commands}
+\usepackage{multirow}
+
+%\usepackage{amsmath}
+\usepackage{array}
+\newcommand\undermat[2]{%
+  \makebox[0pt][l]{$\smash{\underbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+
+% Custom commands for Cyberwheel
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\MC}[1]{\mathcal{#1}}
+\newcommand{\TN}[1]{\text{#1}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+
+\begin{document}
+
+% Control whitespace around equations
+\abovedisplayskip=8pt plus0pt minus3pt
+\belowdisplayskip=8pt plus0pt minus3pt
+
+\begin{center}
+ {\LARGE Autonomous Cyber Defense: A Multi-Agent Decision-Making Framework} \\ 
+ \vspace{0.3cm}
+ {\large Mathematical Formulation of the Cyberwheel Environment}
+\end{center}
+
+\tableofcontents
+
+\clearpage
+
+We consider a multi-agent decision-making system for autonomous cyber defense, where a Red agent (attacker) attempts to compromise network assets while a Blue agent (defender) deploys defensive measures including cyber deception techniques. The Red agent follows the MITRE ATT\&CK framework with structured kill-chain phases, while the Blue agent strategically places decoy hosts (honeypots) and isolates compromised systems to minimize damage and gather threat intelligence.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Environment}
+
+\subsection{Decision-making problem overview}
+We consider an episodic reinforcement learning problem where each episode represents a complete cyber attack scenario. Episodes are of finite length $H$, representing the maximum number of decision steps before the environment resets. We use $T$ to denote the total number of training episodes.
+
+The Red and Blue agents operate in a shared network environment but have distinct state and action spaces reflecting their asymmetric roles. We use $\MC{S}^{(r)}$ and $\MC{S}^{(b)}$ to denote the state space of the red and blue agents respectively. We similarly use $\MC{A}^{(r)}$ and $\MC{A}^{(b)}$ to denote the action space of the two agents.
+
+The agents operate in a turn-based fashion within each timestep. Formally, for each decision time $h \in [1:H]$ within episode $t \in [1:T]$, the red agent observes the network state and executes an attack action first, followed by the blue agent observing alerts and taking a defensive action.
+
+In episode $t$ at decision time $h$, the red and blue agents observe their respective states $S_{t,h}^{(r)} \in \MC{S}^{(r)}$ and $S_{t,h}^{(b)} \in \MC{S}^{(b)}$. After observing their states, the agents select actions $A_{t,h}^{(r)} \in \MC{A}^{(r)}$ and $A_{t,h}^{(b)} \in \MC{A}^{(b)}$ according to their respective policies $\pi^{(r)}$ and $\pi^{(b)}$.
+
+The environment provides immediate rewards $R_{t,h}^{(r)}$ and $R_{t,h}^{(b)}$ to each agent based on the outcomes of their actions and the current network state. These rewards are generally adversarial - successful red actions that compromise real assets provide negative rewards to the blue agent, while successful deception (red agent attacking decoys) provides positive rewards to the blue agent.
+
+The decision-making objective of the red agent is to maximize its expected cumulative reward:
+\begin{equation}
+J^{(r)}(\pi^{(r)}) = \EE\left[\sum_{t=1}^{T} \sum_{h=1}^{H} \gamma^{h-1} R_{t,h}^{(r)} \mid \pi^{(r)}\right]
+\end{equation}
+
+The decision-making objective of the blue agent is to maximize its expected cumulative reward:
+\begin{equation}
+J^{(b)}(\pi^{(b)}) = \EE\left[\sum_{t=1}^{T} \sum_{h=1}^{H} \gamma^{h-1} R_{t,h}^{(b)} \mid \pi^{(b)}\right]
+\end{equation}
+
+where $\gamma \in [0,1]$ is the discount factor that determines the relative importance of immediate versus future rewards.
+
+\subsection{Red Agent (Attacker)}
+
+The red agent represents a sophisticated cyber adversary following the MITRE ATT\&CK framework. Its behavior is structured around kill-chain phases that model realistic attack progression.
+
+\subsubsection{State Space}
+The red agent's state space $\MC{S}^{(r)} \subset \mathbb{R}^{d_r}$ is a $d_r$-dimensional vector encoding:
+
+\begin{equation}
+S_{t,h}^{(r)} = \begin{bmatrix}
+\text{pos}_{t,h} \\
+\text{knowledge}_{t,h} \\
+\text{phase}_{t,h} \\
+\text{capabilities}_{t,h}
+\end{bmatrix}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\text{pos}_{t,h} \in \{0,1\}^{|H|}$ is a one-hot encoding of the red agent's current compromised host position
+    \item $\text{knowledge}_{t,h} \in \{0,1\}^{|H| + |S|}$ represents discovered network information (hosts and subnets)
+    \item $\text{phase}_{t,h} \in \{0,1\}^4$ is a one-hot encoding of the current kill-chain phase: \{discovery, reconnaissance, privilege-escalation, impact\}
+    \item $\text{capabilities}_{t,h} \in \{0,1\}^{|\MC{T}|}$ indicates available techniques from the set $\MC{T}$ of MITRE ATT\&CK techniques
+\end{itemize}
+
+The total dimensionality is $d_r = |H| + |H| + |S| + 4 + |\MC{T}|$, where $|H|$ is the number of hosts, $|S|$ is the number of subnets, and $|\MC{T}|$ is the number of available attack techniques.
+
+\subsubsection{Action Space}
+The red agent's action space $\MC{A}^{(r)}$ consists of kill-chain phase actions:
+
+\begin{equation}
+\MC{A}^{(r)} = \MC{A}_{\text{discovery}} \cup \MC{A}_{\text{recon}} \cup \MC{A}_{\text{privesc}} \cup \MC{A}_{\text{impact}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\MC{A}_{\text{discovery}} = \{\text{ping-sweep}, \text{port-scan}, \text{network-scan}\}$
+    \item $\MC{A}_{\text{recon}} = \{\text{gather-host-info}, \text{enumerate-services}, \text{identify-vulns}\}$
+    \item $\MC{A}_{\text{privesc}} = \{\text{exploit-vulnerability}, \text{lateral-movement}, \text{escalate-privileges}\}$
+    \item $\MC{A}_{\text{impact}} = \{\text{data-exfiltration}, \text{service-disruption}, \text{system-compromise}\}$
+\end{itemize}
+
+Each action is parameterized by a target host $h \in H$, giving total action space size $|\MC{A}^{(r)}| = 12 \times |H|$.
+
+\subsubsection{Reward Function}
+The red agent receives rewards based on successful attack progression and impact on network assets:
+
+\begin{equation}
+R_{t,h}^{(r)} = \sum_{i} \alpha_i \cdot \mathbf{1}[\text{technique}_i \text{ successful}] + \beta \cdot |\text{assets compromised}| - \lambda \cdot \mathbf{1}[\text{detected}]
+\end{equation}
+
+where $\alpha_i > 0$ are rewards for successful technique execution, $\beta > 0$ rewards asset compromise, and $\lambda > 0$ penalizes detection by blue team defenses.
+
+\subsection{Blue Agent (Defender)}
+
+The blue agent implements defensive strategies focused on cyber deception and network isolation to counter red agent attacks.
+
+\subsubsection{State Space}
+The blue agent's state space $\MC{S}^{(b)} \subset \mathbb{R}^{d_b}$ is a $d_b$-dimensional vector with dual structure:
+
+\begin{equation}
+S_{t,h}^{(b)} = \begin{bmatrix}
+\text{alerts}_{t,h}^{\text{current}} \\
+\text{alerts}_{t,h}^{\text{history}} \\
+\text{decoys}_{t,h} \\
+\text{metadata}_{t,h}
+\end{bmatrix}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\text{alerts}_{t,h}^{\text{current}} \in \{0,1\}^{|H|}$ encodes current timestep alerts for each host
+    \item $\text{alerts}_{t,h}^{\text{history}} \in \{0,1\}^{|H|}$ maintains cumulative alert history (sticky memory)
+    \item $\text{decoys}_{t,h} \in \{0,1\}^{|H|}$ indicates current decoy host deployments
+    \item $\text{metadata}_{t,h} \in \mathbb{R}^2$ contains [padding constant, total decoy count]
+\end{itemize}
+
+The total dimensionality is $d_b = 3|H| + 2$. The dual alert structure allows the agent to react to immediate threats while learning long-term attack patterns.
+
+\subsubsection{Action Space}
+The blue agent's action space $\MC{A}^{(b)}$ consists of defensive actions across network subnets:
+
+\begin{equation}
+\MC{A}^{(b)} = \MC{A}_{\text{deploy}} \cup \MC{A}_{\text{remove}} \cup \MC{A}_{\text{isolate}} \cup \{\text{nothing}\}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\MC{A}_{\text{deploy}} = \{(\text{deploy}, s_j, d_k) : s_j \in S, d_k \in \MC{D}\}$ deploys decoy type $d_k$ on subnet $s_j$
+    \item $\MC{A}_{\text{remove}} = \{(\text{remove}, s_j, d_k) : s_j \in S, d_k \in \MC{D}\}$ removes decoy from subnet
+    \item $\MC{A}_{\text{isolate}} = \{(\text{isolate}, h_i) : h_i \in H\}$ isolates compromised host $h_i$
+    \item $\text{nothing}$ represents taking no defensive action
+\end{itemize}
+
+The total action space size is $|\MC{A}^{(b)}| = 2|S||\MC{D}| + |H| + 1$, where $|S|$ is the number of subnets and $|\MC{D}|$ is the number of decoy types.
+
+\subsubsection{Reward Function}
+The blue agent reward emphasizes successful deception and asset protection:
+
+\begin{equation}
+R_{t,h}^{(b)} = R_{\text{deception}} + R_{\text{protection}} + R_{\text{cost}}
+\end{equation}
+
+where:
+
+\begin{align}
+R_{\text{deception}} &= \begin{cases}
+10 \cdot |R_{\text{red}}^{\text{base}}| & \text{if red attacks decoy successfully} \\
+0 & \text{otherwise}
+\end{cases} \\
+R_{\text{protection}} &= \begin{cases}
+-|R_{\text{red}}^{\text{base}}| & \text{if red attacks real host successfully} \\
+0 & \text{otherwise}
+\end{cases} \\
+R_{\text{cost}} &= -c_{\text{deploy}} \cdot N_{\text{decoys}} - c_{\text{maintain}} \cdot \sum_{i} \text{decoy}_i
+\end{align}
+
+The 10× multiplier for successful deception creates strong incentives for effective decoy placement, while deployment and maintenance costs prevent trivial strategies.
+
+\subsection{Distribution of state transitions and rewards}
+
+The environment state transitions are governed by the joint actions of both agents and the underlying network dynamics. Let $\mathcal{N}_{t,h}$ denote the complete network state at time $(t,h)$, including host compromise status, active decoys, and network topology.
+
+The transition probability is defined as:
+\begin{equation}
+\PP(\mathcal{N}_{t,h+1}, S_{t,h+1}^{(r)}, S_{t,h+1}^{(b)} \mid \mathcal{N}_{t,h}, S_{t,h}^{(r)}, S_{t,h}^{(b)}, A_{t,h}^{(r)}, A_{t,h}^{(b)})
+\end{equation}
+
+This can be decomposed as:
+
+\begin{align}
+&\PP(\mathcal{N}_{t,h+1} \mid \mathcal{N}_{t,h}, A_{t,h}^{(r)}, A_{t,h}^{(b)}) \cdot \\
+&\PP(S_{t,h+1}^{(r)} \mid \mathcal{N}_{t,h+1}, S_{t,h}^{(r)}, A_{t,h}^{(r)}) \cdot \\
+&\PP(S_{t,h+1}^{(b)} \mid \mathcal{N}_{t,h+1}, S_{t,h}^{(b)}, A_{t,h}^{(r)}, A_{t,h}^{(b)})
+\end{align}
+
+The network state transitions are deterministic given the actions:
+- Red actions modify host compromise status based on vulnerability exploitation
+- Blue actions add/remove decoys and modify network isolation
+- Alert generation follows probabilistic detection models based on MITRE ATT\&CK techniques
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algorithm}
+
+An algorithm takes in the complete interaction history and outputs a policy distribution over next actions. We define the history at time $(t,h)$ as:
+
+\begin{equation}
+\mathcal{H}_{t,h} = \{(S_{t',h'}^{(r)}, A_{t',h'}^{(r)}, S_{t',h'}^{(b)}, A_{t',h'}^{(b)}, R_{t',h'}^{(r)}, R_{t',h'}^{(b)})\}_{(t',h') < (t,h)}
+\end{equation}
+
+\subsection{Red Agent}
+
+\subsubsection{Baseline: Deterministic Kill-Chain Agent}
+The baseline red agent follows a deterministic policy based on the current kill-chain phase:
+
+\begin{algorithm}
+\caption{Deterministic Red Agent Policy}
+\begin{algorithmic}[1]
+\STATE \textbf{Input:} Current state $S_{t,h}^{(r)}$, network knowledge
+\STATE Extract current phase $\phi$ and position $p$ from state
+\IF{$\phi = \text{discovery}$}
+    \STATE Select ping-sweep or port-scan action on current subnet
+    \IF{sufficient hosts discovered}
+        \STATE Transition to reconnaissance phase
+    \ENDIF
+\ELSIF{$\phi = \text{reconnaissance}$}
+    \STATE Gather information on discovered hosts
+    \IF{vulnerable server found}
+        \STATE Transition to privilege-escalation phase
+    \ENDIF
+\ELSIF{$\phi = \text{privilege-escalation}$}
+    \STATE Attempt lateral movement to server
+    \IF{server compromised}
+        \STATE Transition to impact phase
+    \ENDIF
+\ELSIF{$\phi = \text{impact}$}
+    \STATE Execute impact actions on compromised servers
+\ENDIF
+\RETURN Action $A_{t,h}^{(r)}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Adaptive Campaign Agent}
+An enhanced red agent that adapts strategy based on observed blue agent behavior:
+
+\begin{equation}
+\pi^{(r)}(a \mid s, \mathcal{H}) = \text{softmax}(\beta \cdot Q^{(r)}(s, a) + \alpha \cdot \text{adaptation\_bonus}(a, \mathcal{H}))
+\end{equation}
+
+where $\text{adaptation\_bonus}$ increases probability of actions that counter observed blue patterns.
+
+\subsection{Blue Agent}
+
+\subsubsection{Baseline: Random Decoy Placement}
+The baseline blue agent randomly deploys decoys with uniform probability across subnets:
+
+\begin{equation}
+\pi^{(b)}_{\text{baseline}}(a \mid s) = \begin{cases}
+\frac{1}{|S||\MC{D}|} & \text{if } a \in \MC{A}_{\text{deploy}} \\
+0.1 & \text{if } a = \text{nothing} \\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\subsubsection{PPO Algorithm}
+The main blue agent is trained using Proximal Policy Optimization (PPO) with the following objective:
+
+\begin{equation}
+L^{\text{PPO}}(\theta) = \EE_{t}\left[\min\left(r_t(\theta)\hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t\right)\right]
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $r_t(\theta) = \frac{\pi_\theta(A_{t,h}^{(b)} \mid S_{t,h}^{(b)})}{\pi_{\theta_{\text{old}}}(A_{t,h}^{(b)} \mid S_{t,h}^{(b)})}$ is the probability ratio
+    \item $\hat{A}_t$ is the generalized advantage estimate
+    \item $\epsilon = 0.2$ is the clipping parameter
+\end{itemize}
+
+The advantage is computed using Generalized Advantage Estimation (GAE):
+\begin{equation}
+\hat{A}_{t,h} = \sum_{l=0}^{H-h} (\gamma \lambda)^l \delta_{t,h+l}
+\end{equation}
+
+where $\delta_{t,h} = R_{t,h}^{(b)} + \gamma V(S_{t,h+1}^{(b)}) - V(S_{t,h}^{(b)})$ and $\lambda = 0.95$ is the GAE parameter.
+
+\begin{algorithm}
+\caption{PPO Training for Blue Agent}
+\begin{algorithmic}[1]
+\phase{Experience Collection}
+\FOR{$t = 1$ to $T$}
+    \FOR{$h = 1$ to $H$}
+        \STATE Observe state $S_{t,h}^{(b)}$
+        \STATE Sample action $A_{t,h}^{(b)} \sim \pi_\theta(S_{t,h}^{(b)})$
+        \STATE Execute action and observe reward $R_{t,h}^{(b)}$
+        \STATE Store transition $(S_{t,h}^{(b)}, A_{t,h}^{(b)}, R_{t,h}^{(b)}, S_{t,h+1}^{(b)})$
+    \ENDFOR
+\ENDFOR
+\phase{Advantage Computation}
+\STATE Compute advantages $\{\hat{A}_{t,h}\}$ using GAE
+\STATE Compute returns $\{R_{t,h}^{\text{total}}\}$
+\phase{Policy Update}
+\FOR{$k = 1$ to $K$ epochs}
+    \STATE Compute PPO loss $L^{\text{PPO}}(\theta)$
+    \STATE Update parameters $\theta \leftarrow \theta - \alpha \nabla_\theta L^{\text{PPO}}(\theta)$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Evaluation}
+
+We define several key evaluation metrics to assess the performance of blue agent policies and the overall security of the defended network.
+
+\subsection{Primary Security Metrics}
+
+\subsubsection{Deception Effectiveness}
+The rate at which red agents are successfully deceived into attacking honeypots:
+
+\begin{equation}
+\text{Deception Rate} = \frac{\sum_{t,h} \mathbf{1}[\text{red attacks decoy at } (t,h)]}{\sum_{t,h} \mathbf{1}[\text{red attacks any host at } (t,h)]}
+\end{equation}
+
+\subsubsection{Asset Protection}
+The fraction of real network assets that remain uncompromised:
+
+\begin{equation}
+\text{Protection Rate} = \frac{|H_{\text{real}}| - |\{h \in H_{\text{real}} : \text{compromised}(h)\}|}{|H_{\text{real}}|}
+\end{equation}
+
+where $H_{\text{real}}$ is the set of non-decoy hosts.
+
+\subsubsection{Attack Detection Latency}
+The expected time between attack initiation and blue agent awareness:
+
+\begin{equation}
+\text{Detection Latency} = \EE\left[\min_h \{h : \text{alert generated at timestep } h\} - \text{attack start time}\right]
+\end{equation}
+
+\subsection{Operational Metrics}
+
+\subsubsection{Resource Efficiency}
+The effectiveness of defensive resource allocation:
+
+\begin{equation}
+\text{Resource Efficiency} = \frac{\text{Successful Deceptions}}{|\text{Active Decoys}| + c \cdot |\text{Isolation Actions}|}
+\end{equation}
+
+where $c > 0$ weights the cost of isolation actions relative to decoy maintenance.
+
+\subsubsection{False Positive Rate}
+The rate of false alerts generated by detection systems:
+
+\begin{equation}
+\text{False Positive Rate} = \frac{\sum_{t,h} \mathbf{1}[\text{false alert at } (t,h)]}{\sum_{t,h} \mathbf{1}[\text{any alert at } (t,h)]}
+\end{equation}
+
+\subsection{Strategic Metrics}
+
+\subsubsection{Total Expected Reward}
+The fundamental RL objective for both agents:
+
+\begin{align}
+J^{(b)} &= \EE\left[\sum_{t=1}^{T} \sum_{h=1}^{H} \gamma^{h-1} R_{t,h}^{(b)}\right] \\
+J^{(r)} &= \EE\left[\sum_{t=1}^{T} \sum_{h=1}^{H} \gamma^{h-1} R_{t,h}^{(r)}\right]
+\end{align}
+
+\subsubsection{Attack Success Rate}
+The fraction of attempted attacks that achieve their intended effect:
+
+\begin{equation}
+\text{Attack Success Rate} = \frac{\sum_{t,h} \mathbf{1}[\text{red action successful at } (t,h)]}{\sum_{t,h} \mathbf{1}[\text{red action attempted at } (t,h)]}
+\end{equation}
+
+\subsubsection{Strategic Adaptation Index}
+A measure of how well the blue agent adapts to changing red agent strategies:
+
+\begin{equation}
+\text{Adaptation Index} = \frac{\text{Performance in final 10\% episodes}}{\text{Performance in first 10\% episodes}}
+\end{equation}
+
+where performance is measured by deception rate or protection rate.
+
+\subsection{Network-Specific Metrics}
+
+\subsubsection{Coverage Quality}
+The strategic value of decoy placement across network topology:
+
+\begin{equation}
+\text{Coverage Quality} = \sum_{s \in S} w_s \cdot \frac{\text{decoys in subnet } s}{\text{total hosts in subnet } s}
+\end{equation}
+
+where $w_s$ represents the strategic importance weight of subnet $s$.
+
+\subsubsection{Mean Time to Compromise (MTTC)}
+Expected time for red agent to achieve primary objectives:
+
+\begin{equation}
+\text{MTTC} = \EE\left[\min_h \{h : \text{critical asset compromised at timestep } h\}\right]
+\end{equation}
+
+These metrics provide a comprehensive evaluation framework for comparing blue agent policies and assessing the security posture of defended networks under various attack scenarios.
+
+\bibliography{cyberwheel_refs}
+\bibliographystyle{plainnat}
+
+\end{document}
