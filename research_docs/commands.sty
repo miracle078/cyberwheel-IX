@@ -1,0 +1,38 @@
+% commands.sty - Mathematical notation commands
+% Common LaTeX commands for mathematical typesetting
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{commands}[2025/08/11 Mathematical notation commands]
+
+% Required packages
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+
+% Only define commands if they don't already exist
+\providecommand{\bs}[1]{\boldsymbol{#1}}
+\providecommand{\MC}[1]{\mathcal{#1}}
+\providecommand{\TN}[1]{\text{#1}}
+\providecommand{\RR}{\mathbb{R}}
+\providecommand{\NN}{\mathbb{N}}
+\providecommand{\ZZ}{\mathbb{Z}}
+\providecommand{\QQ}{\mathbb{Q}}
+\providecommand{\CC}{\mathbb{C}}
+\providecommand{\EE}{\mathbb{E}}
+\providecommand{\PP}{\mathbb{P}}
+\providecommand{\VV}{\mathbb{V}}
+\providecommand{\what}[1]{\widehat{#1}}
+
+% Common operators (these are safe to declare multiple times)
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+
+% Norms and inner products
+\providecommand{\norm}[1]{\left\|#1\right\|}
+\providecommand{\abs}[1]{\left|#1\right|}
+\providecommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+\endinput

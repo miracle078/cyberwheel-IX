@@ -1,0 +1,21 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=4:mem=8gb
+#PBS -l walltime=12:00:00
+#PBS -N Phase4_Cross_Phase2_Blue_PerfectDetection_vs_rlredagent
+#PBS -o /rds/general/user/moa324/home/projects/logs/Phase4_Cross_Phase2_Blue_PerfectDetection_vs_rlredagent.out
+#PBS -e /rds/general/user/moa324/home/projects/logs/Phase4_Cross_Phase2_Blue_PerfectDetection_vs_rlredagent.err
+
+cd /rds/general/user/moa324/home/projects/cyberwheel
+
+# Initialize conda environment
+eval "$(~/miniforge3/bin/conda shell.bash hook)"
+conda activate cyberwheel
+
+# Run cross-evaluation
+python -m cyberwheel evaluate evaluate_blue.yaml \
+    --experiment-name Phase2_Blue_PerfectDetection \
+    --red-agent rl_red_agent.yaml \
+    --num-episodes 100 \
+    --experiment-name Phase4_Cross_Phase2_Blue_PerfectDetection_vs_rlredagent
+
+echo "Cross-evaluation completed: Phase2_Blue_PerfectDetection vs rl_red_agent.yaml"
