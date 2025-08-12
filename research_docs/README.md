@@ -4,6 +4,11 @@ This folder contains comprehensive documentation, analysis, and experimental mat
 
 ## Repository Structure
 
+### 🎓 Foundational Learning Package ⭐ **START HERE** ⭐
+- `FOUNDATIONAL_LEARNING_PACKAGE_README.md` - **MAIN ENTRY POINT** - Complete learning guide overview
+- `cyberwheel_foundational_explanation.tex` - Step-by-step explanation of ALL research concepts from basics
+- `LEARNING_PREREQUISITES_GUIDE.md` - 12 prerequisite areas with best learning resources & time estimates
+
 ### 📊 Technical Analysis Documents
 - `cyberwheel_technical_analysis_index.md` - Master index for the complete technical analysis
 - `cyberwheel_technical_analysis_part1.md` - Foundation and problem formulation analysis
@@ -109,7 +114,16 @@ This research focuses on **Adversarial Reinforcement Learning for Cyber Defense*
 
 ## Usage Instructions
 
-### For Technical Analysis
+## Quick Start Guide
+
+### 🚀 **New to This Research? START HERE!**
+1. **Read:** `FOUNDATIONAL_LEARNING_PACKAGE_README.md` - Complete overview of the learning package
+2. **Assess:** `LEARNING_PREREQUISITES_GUIDE.md` - Identify which prerequisite topics you need to learn
+3. **Learn:** Follow the recommended learning path (4-18 months depending on background)
+4. **Understand:** Read `cyberwheel_foundational_explanation.tex` - Step-by-step research explanation
+5. **Deep Dive:** Progress to technical analysis parts 1-4 for complete mathematical details
+
+### 📖 For Technical Analysis
 1. Start with `cyberwheel_technical_analysis_index.md` for overview
 2. Read parts 1-4 sequentially for complete understanding
 3. Reference comprehensive report PDF for formal presentation
