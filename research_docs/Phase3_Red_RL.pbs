@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=12:mem=24gb
+#PBS -l walltime=48:00:00
+#PBS -N Phase3_Red_RL
+#PBS -o /rds/general/user/moa324/home/projects/logs/Phase3_Red_RL.out
+#PBS -e /rds/general/user/moa324/home/projects/logs/Phase3_Red_RL.err
+
+cd /rds/general/user/moa324/home/projects/cyberwheel
+
+# Initialize conda environment
+eval "$(~/miniforge3/bin/conda shell.bash hook)"
+conda activate cyberwheel
+
+# Run red agent training
+python -m cyberwheel train train_red.yaml \
+    --network-config 200-host-network.yaml --total-timesteps 10000000 --experiment-name Phase3_Red_RL --train-red true --train-blue false --num-envs 12
+
+echo "Red agent training completed for Phase3_Red_RL"
