@@ -22,7 +22,7 @@
     title=Intuitive Explanation
 }
 
-\newtcolorbox{math}{
+\newtcolorbox{mathdetails}{
     colback=red!5!white,
     colframe=red!75!black,
     title=Mathematical Details
@@ -87,7 +87,7 @@ This is exactly how humans and animals learn - through trial and error with feed
 
 \subsection{Key RL Concepts We Need to Understand}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{The Mathematical Framework}:
 \begin{itemize}
 \item \textbf{State (S)}: What the agent can observe about the environment
@@ -106,7 +106,7 @@ Where:
 \item $\gamma$ = discount factor (0.95 in our research) - values future rewards less than immediate ones
 \item $R_t$ = reward at time $t$
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \section{What Makes This "Adversarial"?}
 
@@ -127,7 +127,7 @@ Where:
 
 \subsection{Why is Adversarial Learning Hard?}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{The Mathematical Challenge}:
 
 In single-agent RL, we optimize:
@@ -150,7 +150,7 @@ This is much harder because:
 \item Training can become unstable if one agent learns much faster than the other
 \item Finding equilibrium solutions is computationally challenging
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \section{The Cybersecurity Environment (Step by Step)}
 
@@ -189,7 +189,7 @@ This is much harder because:
 \end{enumerate}
 \end{intuition}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{Red Agent State Space}: $S^{(r)} \in \mathbb{R}^{d_r}$ where $d_r = 2|H| + |S| + 299$
 
 This means the red agent observes:
@@ -205,7 +205,7 @@ This means the red agent observes:
 \item For each host $H$, there are 12 possible attack actions
 \item Total actions scale with network size
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \subsection{What Can the Blue Agent (Defender) Do?}
 
@@ -219,7 +219,7 @@ This means the red agent observes:
 \end{enumerate}
 \end{intuition}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{Blue Agent State Space}: $S^{(b)} \in \mathbb{R}^{d_b}$ where $d_b = 3|H| + 2$
 
 The blue agent observes:
@@ -236,7 +236,7 @@ The blue agent observes:
 \item Isolate any of the $|H|$ hosts
 \item Plus one "do nothing" action
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \section{The Reward System (How Agents Learn What's Good/Bad)}
 
@@ -255,7 +255,7 @@ Red agent gets rewards for:
 \end{itemize}
 \end{intuition}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{Red Reward Formula}:
 $$R^{(r)}_{t,h} = \sum_i \alpha_i \cdot \mathbf{1}[\text{technique}_i \text{ successful}] + \beta \cdot |\text{assets compromised}| - \lambda \cdot \mathbf{1}[\text{detected}]$$
 
@@ -266,7 +266,7 @@ Where:
 \item $\lambda > 0$ = penalty for getting caught
 \item $\mathbf{1}[\cdot]$ = indicator function (1 if true, 0 if false)
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \subsection{Blue Agent Rewards}
 
@@ -279,7 +279,7 @@ Blue agent gets rewards for:
 \end{itemize}
 \end{intuition}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{Blue Reward Formula}:
 $$R^{(b)}_{t,h} = R_{\text{deception}} + R_{\text{protection}} + R_{\text{cost}}$$
 
@@ -297,7 +297,7 @@ R_{\text{cost}} &= -c_{\text{deploy}} \cdot N_{\text{new decoys}} - c_{\text{mai
 \end{align}
 
 \textbf{Key Insight}: The "10×" multiplier for deception means tricking an attacker into a decoy gives 10 times more reward than preventing an attack on a real computer. This strongly encourages the use of deception.
-\end{math}
+\end{mathdetails}
 
 \section{The PPO Algorithm (How the Agents Actually Learn)}
 
@@ -317,7 +317,7 @@ R_{\text{cost}} &= -c_{\text{deploy}} \cdot N_{\text{new decoys}} - c_{\text{mai
 
 \subsection{The PPO Mathematical Formula}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{PPO Objective Function}:
 $$L^{\text{PPO}}(\theta) = \mathbb{E}_t\left[\min(r_t(\theta)\hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t)\right]$$
 
@@ -346,7 +346,7 @@ This is the ratio of:
 \end{itemize}
 
 \textbf{Why clip?} This prevents the policy from changing too drastically in one update, which could destabilize learning.
-\end{math}
+\end{mathdetails}
 
 \section{SULI: Our Novel Training Method}
 
@@ -371,7 +371,7 @@ This is the ratio of:
 \end{itemize}
 \end{intuition}
 
-\begin{math}
+\begin{mathdetails}
 \textbf{SULI Mathematical Framework}:
 
 \textbf{Uniform Initialization}:
@@ -391,7 +391,7 @@ Both agents update simultaneously based on their interaction.
 $$|J^{(b)}(\pi_k^{(b)}, \pi_k^{(r)}) - J^{(r)}(\pi_k^{(b)}, \pi_k^{(r)})| \leq \beta$$
 
 If the performance difference gets too large, we intervene to rebalance.
-\end{math}
+\end{mathdetails}
 
 \section{The Seven-Phase Experimental Methodology}
 
@@ -480,7 +480,7 @@ We need concrete ways to measure whether our methods are working. Here are the m
 \end{foundation}
 
 \subsection{Deception Effectiveness}
-\begin{math}
+\begin{mathdetails}
 $$\text{Deception Rate} = \frac{\text{Number of attacks on decoys}}{\text{Total number of attacks}}$$
 
 \textbf{What this means}: What percentage of attacker actions are wasted on fake computers?
@@ -488,10 +488,10 @@ $$\text{Deception Rate} = \frac{\text{Number of attacks on decoys}}{\text{Total 
 \item 0.0 = Attacker never falls for decoys (bad for defense)
 \item 1.0 = Attacker only attacks decoys (perfect defense)
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \subsection{Asset Protection Rate}
-\begin{math}
+\begin{mathdetails}
 $$\text{Protection Rate} = \frac{\text{Number of uncompromised real computers}}{\text{Total number of real computers}}$$
 
 \textbf{What this means}: What percentage of real computers remain safe?
@@ -499,10 +499,10 @@ $$\text{Protection Rate} = \frac{\text{Number of uncompromised real computers}}{
 \item 0.0 = All real computers compromised (complete failure)
 \item 1.0 = All real computers protected (perfect success)
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \subsection{Mean Time to Compromise (MTTC)}
-\begin{math}
+\begin{mathdetails}
 $$\text{MTTC} = \mathbb{E}[\text{Time until first successful attack on critical asset}]$$
 
 \textbf{What this means}: On average, how long does it take an attacker to successfully breach something important?
@@ -510,7 +510,7 @@ $$\text{MTTC} = \mathbb{E}[\text{Time until first successful attack on critical 
 \item Lower values = Defense fails quickly
 \item Higher values = Defense delays attacks successfully
 \end{itemize}
-\end{math}
+\end{mathdetails}
 
 \section{Research Contributions and Impact}
 
