@@ -26,80 +26,81 @@
 \contentsline {subsubsection}{\numberline {3.4.3}Action Space}{11}{subsubsection.3.4.3}%
 \contentsline {subsubsection}{\numberline {3.4.4}Reward Function}{12}{subsubsection.3.4.4}%
 \contentsline {subsection}{\numberline {3.5}Distribution of state transitions and rewards}{12}{subsection.3.5}%
-\contentsline {section}{\numberline {4}Algorithm}{12}{section.4}%
+\contentsline {section}{\numberline {4}Algorithm}{13}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Red Agent}{13}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Baseline: Deterministic Kill-Chain Agent}{13}{subsubsection.4.1.1}%
 \contentsline {subsubsection}{\numberline {4.1.2}Adaptive Campaign Agent}{13}{subsubsection.4.1.2}%
 \contentsline {subsection}{\numberline {4.2}Blue Agent}{13}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}Baseline: Random Decoy Placement}{13}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}PPO Algorithm}{14}{subsubsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.3}Detection and Alert Mechanisms}{15}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Evaluation}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Primary Security Metrics}{15}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Deception Effectiveness}{15}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Asset Protection Rate}{15}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Attack Detection Latency}{15}{subsubsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.2}Operational Efficiency Metrics}{15}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Resource Efficiency}{15}{subsubsection.5.2.1}%
+\contentsline {subsection}{\numberline {4.3}Detection and Alert Mechanisms}{14}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Evaluation}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Primary Security Metrics}{16}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Deception Effectiveness}{16}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Asset Protection Rate}{16}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Attack Detection Latency}{16}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Operational Efficiency Metrics}{16}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Resource Efficiency}{16}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}False Positive Rate}{16}{subsubsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.3}Strategic Learning Metrics}{16}{subsection.5.3}%
 \contentsline {subsubsection}{\numberline {5.3.1}Total Expected Reward}{16}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Strategic Adaptation Index}{16}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Mean Time to Compromise (MTTC)}{16}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Network-Specific Metrics}{16}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Coverage Quality}{16}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Attack Surface Reduction}{16}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.3.2}Strategic Adaptation Index}{17}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Mean Time to Compromise (MTTC)}{17}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Network-Specific Metrics}{17}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Coverage Quality}{17}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Attack Surface Reduction}{17}{subsubsection.5.4.2}%
 \contentsline {section}{\numberline {6}Comprehensive Experimental Methodology}{17}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Seven-Phase Progressive Training Framework}{17}{subsection.6.1}%
 \contentsline {subsubsection}{\numberline {6.1.1}Phase 1: System Validation and Infrastructure Testing}{17}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}Phase 2: Blue Agent Mastery - Comprehensive Defense Strategy Analysis}{17}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.2}Phase 2: Blue Agent Mastery - Comprehensive Defense Strategy Analysis}{18}{subsubsection.6.1.2}%
 \contentsline {subsubsection}{\numberline {6.1.3}Phase 3: Red Agent Mastery - Attack Strategy Diversification}{18}{subsubsection.6.1.3}%
-\contentsline {subsubsection}{\numberline {6.1.4}Phase 4: Cross-Evaluation Matrix - Systematic Agent Interaction Analysis}{18}{subsubsection.6.1.4}%
+\contentsline {subsubsection}{\numberline {6.1.4}Phase 4: Cross-Evaluation Matrix - Systematic Agent Interaction Analysis}{19}{subsubsection.6.1.4}%
 \contentsline {subsubsection}{\numberline {6.1.5}Phase 5: SULI Co-Evolution - Novel Multi-Agent Training}{19}{subsubsection.6.1.5}%
 \contentsline {subsubsection}{\numberline {6.1.6}Phase 6: Scalability Analysis - Performance Limits and Optimization}{19}{subsubsection.6.1.6}%
-\contentsline {subsubsection}{\numberline {6.1.7}Phase 7: Research Extensions - Statistical Analysis and Publication Readiness}{19}{subsubsection.6.1.7}%
+\contentsline {subsubsection}{\numberline {6.1.7}Phase 7: Research Extensions - Statistical Analysis and Publication Readiness}{20}{subsubsection.6.1.7}%
 \contentsline {subsection}{\numberline {6.2}Experimental Infrastructure and Data Management}{20}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}High-Performance Computing Integration}{20}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}Evaluation and Monitoring Framework}{20}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2}Evaluation and Monitoring Framework}{21}{subsubsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.3}Expected Research Outcomes and Timeline}{21}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Experimental Results and Analysis}{21}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Training Performance and Convergence Analysis}{21}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Phase 1: System Validation Results}{21}{subsubsection.7.1.1}%
+\contentsline {section}{\numberline {7}Experimental Results and Analysis}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Training Performance and Convergence Analysis}{22}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Phase 1: System Validation Results}{22}{subsubsection.7.1.1}%
 \contentsline {subsubsection}{\numberline {7.1.2}Phase 2: Blue Agent Performance Matrix}{22}{subsubsection.7.1.2}%
-\contentsline {subsubsection}{\numberline {7.1.3}Phase 3: Red Agent Strategy Development}{22}{subsubsection.7.1.3}%
-\contentsline {subsubsection}{\numberline {7.1.4}Phase 4: Cross-Evaluation Matrix Results}{23}{subsubsection.7.1.4}%
-\contentsline {subsubsection}{\numberline {7.1.5}Phase 5: SULI Co-Evolution Analysis}{23}{subsubsection.7.1.5}%
-\contentsline {subsubsection}{\numberline {7.1.6}Phase 6: Scalability Validation}{23}{subsubsection.7.1.6}%
-\contentsline {subsection}{\numberline {7.2}Statistical Significance and Reproducibility}{24}{subsection.7.2}%
-\contentsline {subsubsection}{\numberline {7.2.1}Multi-Seed Analysis}{24}{subsubsection.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.2.2}Reproducibility Validation}{24}{subsubsection.7.2.2}%
-\contentsline {subsection}{\numberline {7.3}Research Contributions Validation}{24}{subsection.7.3}%
-\contentsline {subsubsection}{\numberline {7.3.1}C1: SULI Methodology Validation}{24}{subsubsection.7.3.1}%
-\contentsline {subsubsection}{\numberline {7.3.2}C2: Deception Framework Effectiveness}{25}{subsubsection.7.3.2}%
-\contentsline {subsubsection}{\numberline {7.3.3}C3: Cross-Strategy Performance Analysis}{25}{subsubsection.7.3.3}%
-\contentsline {subsubsection}{\numberline {7.3.4}C4: Scalability Demonstration}{25}{subsubsection.7.3.4}%
-\contentsline {subsection}{\numberline {7.4}Visualization and Interactive Analysis}{25}{subsection.7.4}%
-\contentsline {subsubsection}{\numberline {7.4.1}Training Progression Visualization}{25}{subsubsection.7.4.1}%
-\contentsline {subsubsection}{\numberline {7.4.2}Result Exploration Dashboard}{26}{subsubsection.7.4.2}%
-\contentsline {section}{\numberline {8}Limitations}{26}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Simulation Environment Constraints}{26}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Attack Model Scope}{26}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Computational Resource Requirements}{26}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Evaluation Timeframe}{26}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Real-World Deployment Considerations}{27}{subsection.8.5}%
-\contentsline {subsection}{\numberline {8.6}Baseline Comparison Scope}{27}{subsection.8.6}%
-\contentsline {section}{\numberline {9}Discussion and Future Work}{27}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Research Impact and Significance}{27}{subsection.9.1}%
-\contentsline {subsubsection}{\numberline {9.1.1}Methodological Contributions}{27}{subsubsection.9.1.1}%
-\contentsline {subsubsection}{\numberline {9.1.2}Practical Applications}{27}{subsubsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.2}Limitations and Challenges}{28}{subsection.9.2}%
-\contentsline {subsubsection}{\numberline {9.2.1}Current Limitations}{28}{subsubsection.9.2.1}%
-\contentsline {subsubsection}{\numberline {9.2.2}Technical Challenges}{28}{subsubsection.9.2.2}%
-\contentsline {subsection}{\numberline {9.3}Future Research Directions}{28}{subsection.9.3}%
-\contentsline {subsubsection}{\numberline {9.3.1}Short-term Extensions (1-2 years)}{28}{subsubsection.9.3.1}%
-\contentsline {subsubsection}{\numberline {9.3.2}Medium-term Research (2-5 years)}{28}{subsubsection.9.3.2}%
-\contentsline {subsubsection}{\numberline {9.3.3}Long-term Vision (5+ years)}{29}{subsubsection.9.3.3}%
-\contentsline {subsection}{\numberline {9.4}Reproducibility and Open Science}{29}{subsection.9.4}%
-\contentsline {subsubsection}{\numberline {9.4.1}Open Research Platform}{29}{subsubsection.9.4.1}%
-\contentsline {subsubsection}{\numberline {9.4.2}Research Infrastructure}{29}{subsubsection.9.4.2}%
-\contentsline {section}{\numberline {10}Conclusion}{29}{section.10}%
+\contentsline {subsubsection}{\numberline {7.1.3}Comprehensive Experimental Visualizations}{23}{subsubsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.4}Phase 3: Red Agent Strategy Development}{29}{subsubsection.7.1.4}%
+\contentsline {subsubsection}{\numberline {7.1.5}Phase 4: Comprehensive Evaluation Metrics Analysis}{29}{subsubsection.7.1.5}%
+\contentsline {subsubsection}{\numberline {7.1.6}Phase 5: SULI Co-Evolution Analysis}{30}{subsubsection.7.1.6}%
+\contentsline {subsubsection}{\numberline {7.1.7}Phase 6: Scalability Validation}{31}{subsubsection.7.1.7}%
+\contentsline {subsection}{\numberline {7.2}Statistical Significance and Reproducibility}{31}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Multi-Seed Analysis}{31}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Reproducibility Validation}{31}{subsubsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.3}Research Contributions Validation}{32}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}C1: SULI Methodology Validation}{32}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}C2: Deception Framework Effectiveness}{32}{subsubsection.7.3.2}%
+\contentsline {subsubsection}{\numberline {7.3.3}C3: Cross-Strategy Performance Analysis}{32}{subsubsection.7.3.3}%
+\contentsline {subsubsection}{\numberline {7.3.4}C4: Scalability Demonstration}{32}{subsubsection.7.3.4}%
+\contentsline {subsection}{\numberline {7.4}Visualization and Interactive Analysis}{33}{subsection.7.4}%
+\contentsline {subsubsection}{\numberline {7.4.1}Training Progression Visualization}{33}{subsubsection.7.4.1}%
+\contentsline {subsubsection}{\numberline {7.4.2}Result Exploration Dashboard}{33}{subsubsection.7.4.2}%
+\contentsline {section}{\numberline {8}Limitations}{33}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Simulation Environment Constraints}{33}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Attack Model Scope}{33}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Computational Resource Requirements}{34}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Evaluation Timeframe}{34}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Real-World Deployment Considerations}{34}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Baseline Comparison Scope}{34}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Discussion and Future Work}{34}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Research Impact and Significance}{34}{subsection.9.1}%
+\contentsline {subsubsection}{\numberline {9.1.1}Methodological Contributions}{34}{subsubsection.9.1.1}%
+\contentsline {subsubsection}{\numberline {9.1.2}Practical Applications}{35}{subsubsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.2}Limitations and Challenges}{35}{subsection.9.2}%
+\contentsline {subsubsection}{\numberline {9.2.1}Current Limitations}{35}{subsubsection.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.2}Technical Challenges}{35}{subsubsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.3}Future Research Directions}{35}{subsection.9.3}%
+\contentsline {subsubsection}{\numberline {9.3.1}Short-term Extensions (1-2 years)}{35}{subsubsection.9.3.1}%
+\contentsline {subsubsection}{\numberline {9.3.2}Medium-term Research (2-5 years)}{36}{subsubsection.9.3.2}%
+\contentsline {subsubsection}{\numberline {9.3.3}Long-term Vision (5+ years)}{36}{subsubsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.4}Reproducibility and Open Science}{36}{subsection.9.4}%
+\contentsline {subsubsection}{\numberline {9.4.1}Open Research Platform}{36}{subsubsection.9.4.1}%
+\contentsline {subsubsection}{\numberline {9.4.2}Research Infrastructure}{36}{subsubsection.9.4.2}%
+\contentsline {section}{\numberline {10}Conclusion}{37}{section.10}%
