@@ -1,0 +1,5 @@
+Log_File,Total_Steps,Episodes,Red_Success_Rate,Top_Blue_Action,Avg_Reward
+Phase1_Validation_HPC_Interactive,90,3,1.000,deploy_decoy,2.18
+Phase2_Blue_HighDecoy_HPC_Interactive,300,3,1.000,deploy_decoy,-5.46
+Phase2_Blue_Medium_HPC_Interactive,300,3,1.000,deploy_decoy,-4.94
+Phase2_Blue_Medium_Visualization,200,2,1.000,deploy_decoy,-4.97
