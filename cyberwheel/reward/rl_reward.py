@@ -4,26 +4,27 @@ from cyberwheel.utils.hybrid_set_list import HybridSetList
 
 
 class RLReward(Reward):
-    def __init__(
-        self,
-        red_rewards: RewardMap,
-        blue_rewards: RewardMap,
-        valid_targets: list[str] | str,
-        network: Network
-    ) -> None:
-        super().__init__(red_rewards, blue_rewards)
-        self.valid_targets = valid_targets
+    def __init__(self, red_agent, blue_agent, args, network: Network) -> None:
+        super().__init__(red_agent, blue_agent)
+        # adapt to args signature used elsewhere
+        self.valid_targets = getattr(args, 'valid_targets', 'all')
         self.network = network
+        # internal last-call context (env will populate before reward retrieval)
+        self._ctx = None
 
-    def calculate_reward(
+    def set_context(self, red_action: str, blue_action: str, red_success: bool, blue_success: bool,
+                    target_host: Host, blue_id: str = "-1", blue_recurring: int = 0) -> None:
+        self._ctx = (red_action, blue_action, red_success, blue_success, target_host, blue_id, blue_recurring)
+
+    def _compute(
         self,
         red_action: str,
         blue_action: str,
-        red_success: str,
+        red_success: bool,
         blue_success: bool,
         target_host: Host,
-        blue_id: str = -1,
-        blue_recurring: int = 0,
+        blue_id: str,
+        blue_recurring: int,
     ) -> int | float:
         
         if self.valid_targets == "servers":
@@ -57,11 +58,6 @@ class RLReward(Reward):
         else:
             b = 0
         
-        #print(f"{red_action}")
-        #print(f"Red:\t{r}")
-        #print(f"{red_success}")
-        #print(f"Blu:\t{b}")
-        
         if r_recurring != 0:
             self.add_recurring_red_action('0', red_action, decoy)
 
@@ -71,6 +67,12 @@ class RLReward(Reward):
             self.add_recurring_blue_action(blue_id, blue_action)
 
         return r + b + self.sum_recurring()
+
+    def calculate_reward(self) -> int | float:
+        # Base class interface: use stored context
+        if self._ctx is None:
+            return 0
+        return self._compute(*self._ctx)
     
     def sum_recurring(self) -> int | float:
         sum = 0
