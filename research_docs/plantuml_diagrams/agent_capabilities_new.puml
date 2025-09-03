@@ -1,0 +1,33 @@
+@startuml agent_capabilities
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+package "Agent Capability Comparison" {
+  
+  package "Red Agent Action Space |A^(r)| = 295" {
+    rectangle "**Phase 1: Discovery**\n\nNetwork Scan\nService Enumeration" as Phase1 #FFE6E6
+    rectangle "**Phase 2: Initial Access**\n\nExploit Vulnerability\nCredential Access" as Phase2 #FFE6E6  
+    rectangle "**Phase 3: Lateral Movement**\n\nRemote Access\nPrivilege Escalation" as Phase3 #FFE6E6
+    rectangle "**Phase 4: Impact**\n\nData Exfiltration\nSystem Disruption" as Phase4 #FFE6E6
+  }
+  
+  package "Blue Agent Action Space |A^(b)| = 2|H| + 1" {
+    rectangle "**Deploy Decoy**\n\nSelect Host h ∈ H\nCreate Deception" as Deploy #E6F3FF
+    rectangle "**Remove Decoy**\n\nTarget Host h ∈ H\nCleanup Resources" as Remove #E6F3FF
+    rectangle "**No Operation**\n\nMaintain State\nObserve Network" as Nothing #E6F3FF
+  }
+}
+
+Phase1 --> Phase2 : MITRE\nATT&CK
+Phase2 --> Phase3 : Kill Chain
+Phase3 --> Phase4 : Progression
+
+Deploy <--> Remove : Strategic\nDecision
+Remove <--> Nothing : Making
+Nothing <--> Deploy : Process
+
+note bottom : Asymmetric action spaces balanced through reward design
+
+@enduml

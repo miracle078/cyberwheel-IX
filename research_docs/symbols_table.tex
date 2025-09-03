@@ -1,0 +1,25 @@
+% symbols_table.tex - Centralized notation glossary
+\section*{Symbol Glossary (Living Document)}
+\begin{tabular}{llp{8cm}}
+\textbf{Symbol} & \textbf{Domain} & \textbf{Description} \\
+$G=(V,E)$ & Graph & Network topology (directed) \\
+$H$ & Set & Hosts in network \\
+$S$ & Set & Subnets (or services depending context – disambiguate) \\
+$R$ & Set & Red (attacker-related) host subset / resources (clarify) \\
+$\pi^{(b)},\pi^{(r)}$ & Policies & Blue / Red stochastic policies \\
+$J^{(b)},J^{(r)}$ & $\mathbb{R}$ & Expected returns for blue / red \\
+$R_t$ & $\mathbb{R}$ & Reward at timestep $t$ (context: agent-specific) \\
+$\gamma$ & $[0,1]$ & Discount factor (currently 0.99) \\
+$A_t$ & $\mathbb{R}$ & Advantage estimate at timestep $t$ \\
+$\hat{A}_t$ & $\mathbb{R}$ & GAE advantage estimate \\
+$V_{\phi}(s)$ & $\mathbb{R}$ & Value function parameterized by $\phi$ \\
+$r_t(\theta)$ & $\mathbb{R}$ & PPO probability ratio \(\pi_\theta(a_t|s_t)/\pi_{\theta_{old}}(a_t|s_t)\) \\
+$DER$ & $[0,1]$ & Deception Efficacy Rate \\
+$DEI$ & $\mathbb{R}_+$ & Decoy Efficiency Index \\
+$PSR$ & $[0,1]$ & Protection Success Rate \\
+$SI$ & $\mathbb{R}_+$ & Stability Index (rolling return std) \\
+$TTI$ & $\mathbb{N}$ & Time to first impact event \\
+$RCNR$ & $\mathbb{R}$ & Resource Cost Normalized Return \\
+\end{tabular}
+
+% TODO: Disambiguate overloaded symbols (S) and refine domains.

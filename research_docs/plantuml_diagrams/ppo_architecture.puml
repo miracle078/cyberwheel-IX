@@ -1,0 +1,24 @@
+@startuml ppo_architecture
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+package "PPO Training Architecture" {
+  component [**Cyberwheel Environment**\n\nNetwork State\nAttack/Defense Actions\nReward Generation] as Environment #E6FFE6
+  
+  component [**Blue Agent (PPO)**\n\nPolicy Network π_θ\nValue Network V_φ\nPPO Optimization] as BlueAgent #E6F3FF
+  
+  component [**Red Agent (Fixed)**\n\nMITRE ATT&CK Policy\nConsistent Adversary] as RedAgent #FFE6E6
+}
+
+BlueAgent --> Environment : a_t^(b)
+Environment --> BlueAgent : s_t^(b), r_t^(b)
+RedAgent --> Environment : a_t^(r)
+Environment --> RedAgent : s_t^(r)
+
+BlueAgent --> BlueAgent : Policy Update\n(PPO Objective)
+
+note bottom of BlueAgent : J^(b)(π^(b)) = E[Σ γ^(h-1) R_h^(b)]
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml evolution_timeline
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+component [**Generation 1**\nRule-Based\n1990s-2000s] as Gen1 #FFE6E6
+component [**Generation 2**\nML\n2000s-2010s] as Gen2 #E6F3FF
+component [**Generation 3**\nAdaptive\n2010s-Present] as Gen3 #E6FFE6
+component [**Generation 4**\nAdversarial\nOur Work] as Gen4 #FFF2E6
+
+Gen1 --> Gen2 : Evolution
+Gen2 --> Gen3 : Evolution
+Gen3 --> Gen4 : Evolution
+
+note bottom : Timeline: 1990s → 2000s → 2010s → Present
+
+@enduml

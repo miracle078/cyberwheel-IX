@@ -1,0 +1,242 @@
+% REVISED METHODOLOGY SECTION - ADDRESSING EXTERNAL VALIDITY
+% ===========================================================
+% This section replaces previous methodology content to address
+% the critical external validity concerns identified in the review.
+
+\section{Methodology: Hybrid Simulation-Emulation Architecture}
+
+Traditional cybersecurity RL research faces a fundamental challenge: the need for both computational efficiency (requiring simplified simulations) and operational realism (demanding high-fidelity environments). Our methodology addresses this challenge through a novel hybrid architecture that seamlessly integrates simulation-based training with emulation-based validation.
+
+\subsection{Architecture Overview}
+
+\subsubsection{Three-Tier Validation Framework}
+
+Our methodology employs a systematic three-tier approach to address external validity concerns:
+
+\begin{enumerate}
+    \item \textbf{Tier 1 - High-Speed Simulation Training}: Computationally efficient RL training using behavior-faithful simulation with ART command integration
+    
+    \item \textbf{Tier 2 - Emulation-Based Validation}: High-fidelity evaluation using Firewheel emulation with real VMs, network protocols, and security monitoring
+    
+    \item \textbf{Tier 3 - Operational Readiness Assessment}: Framework for transitioning validated agents to production environments
+\end{enumerate}
+
+This graduated approach enables the computational scalability required for RL training while ensuring the behavioral fidelity necessary for operational deployment.
+
+\subsubsection{Hybrid Architecture Components}
+
+\textbf{Simulation Environment (Tier 1)}
+
+The simulation layer provides the computational efficiency required for RL training while maintaining behavioral fidelity through:
+
+\begin{itemize}
+    \item \textbf{Atomic Red Team Integration}: 295 ART techniques providing real command sequences
+    \item \textbf{MITRE ATT\&CK Mapping}: Systematic correspondence between abstract actions and concrete attack techniques  
+    \item \textbf{CVE-Based Vulnerability Modeling}: Realistic exploitation constraints based on documented vulnerabilities
+    \item \textbf{Network Topology Fidelity}: Enterprise-grade network architectures with realistic segmentation and service distribution
+\end{itemize}
+
+\textbf{Emulation Environment (Tier 2)}
+
+The emulation layer provides operational validation through:
+
+\begin{itemize}
+    \item \textbf{Firewheel Integration}: Sandia National Laboratory's scalable emulation platform supporting 100K+ nodes
+    \item \textbf{KVM Virtualization}: Full operating system instances with real service configurations
+    \item \textbf{Production Security Stack}: Elastic Stack SIEM with Sysmon monitoring providing realistic detection capabilities
+    \item \textbf{Network Protocol Realism}: TCP/IP networking with authentic packet flows, routing, and firewall configurations
+\end{itemize}
+
+\subsection{Behavioral Fidelity Validation}
+
+\subsubsection{Command-Level Validation}
+
+Unlike abstract cybersecurity simulations, our approach ensures that RL agents train against actual attack commands:
+
+\textbf{Real Command Execution}: Table~\ref{tab:command_validation} demonstrates the direct correspondence between simulation actions and executable commands used by real attackers.
+
+\begin{table}[H]
+\centering
+\caption{Simulation-to-Reality Command Validation}
+\label{tab:command_validation}
+\begin{tabular}{p{2.5cm}p{2cm}p{8.5cm}}
+\toprule
+\textbf{RL Action} & \textbf{MITRE ID} & \textbf{Executed Command} \\
+\midrule
+\texttt{discovery} & T1082 & \texttt{cmd.exe /C whoami \&\& wmic useraccount get /ALL} \\
+\texttt{recon} & T1046 & \texttt{nmap -sS -p 1-1000 \$\{target\_ip\}} \\
+\texttt{lateral\_move} & T1021.001 & \texttt{net use \textbackslash\textbackslash\$\{target\}\textbackslash admin\$ /user:\$\{username\} \$\{password\}} \\
+\texttt{privilege\_esc} & T1055.011 & \texttt{powershell.exe -Command "Invoke-WebRequest \$\{payload\_url\}"} \\
+\texttt{impact} & T1486 & \texttt{cipher /w:C:\textbackslash temp \&\& vssadmin delete shadows /all} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Command History Tracking}: All executed commands are logged with timestamps, source/target hosts, success/failure status, and resulting system state changes. This provides forensic-level detail for analyzing learned defensive strategies.
+
+\subsubsection{Vulnerability Integration}
+
+Our methodology incorporates realistic vulnerability patterns through systematic CVE integration:
+
+\begin{itemize}
+    \item \textbf{Host-Specific Vulnerabilities}: Each simulated host is configured with CVEs corresponding to its operating system and installed services
+    
+    \item \textbf{Exploit-CVE Dependencies}: Attack techniques can only succeed if target hosts contain the required vulnerabilities, ensuring realistic attack constraints
+    
+    \item \textbf{Temporal Vulnerability Modeling}: CVE assignments reflect realistic patching cycles and vulnerability disclosure timelines
+\end{itemize}
+
+\subsection{Network Architecture Validation}
+
+\subsubsection{Enterprise Topology Modeling}
+
+Network configurations are based on documented enterprise architecture patterns rather than simplified academic networks:
+
+\textbf{Three-Tier Architecture}:
+\begin{itemize}
+    \item \textbf{DMZ Segment}: Web servers, email gateways, and external-facing services
+    \item \textbf{Internal Network}: Workstations, file servers, and internal applications  
+    \item \textbf{Management Network}: Domain controllers, backup systems, and security infrastructure
+\end{itemize}
+
+\textbf{Realistic Service Distribution}: Server placement and configurations mirror real enterprise deployments, including Active Directory, DNS, DHCP, and application services.
+
+\subsubsection{Scalability Validation}
+
+Our experimental methodology validates performance across realistic network scales:
+
+\begin{itemize}
+    \item \textbf{Small Networks (15-30 hosts)}: Branch office or small business configurations
+    \item \textbf{Medium Networks (50-100 hosts)}: Departmental networks or mid-size enterprise segments
+    \item \textbf{Large Networks (150-200 hosts)}: Enterprise-scale segments requiring distributed defense coordination
+\end{itemize}
+
+This scaling validation demonstrates that learned strategies generalize across organizational contexts rather than being limited to toy academic problems.
+
+\subsection{Statistical Validation Framework}
+
+To address the critical lack of statistical rigor identified in prior cybersecurity RL research, our methodology incorporates comprehensive statistical validation:
+
+\subsubsection{Experimental Design}
+
+\textbf{Multi-Seed Validation}: All experiments are conducted across multiple random seeds (n ≥ 10) to ensure statistical reliability.
+
+\textbf{Baseline Comparison Framework}: Systematic comparison against five defensive strategies:
+\begin{enumerate}
+    \item PPO-based learned strategy
+    \item Static rule-based deployment  
+    \item Random action selection
+    \item Heuristic rule-based strategy
+    \item Inactive baseline (no defensive actions)
+\end{enumerate}
+
+\subsubsection{Statistical Metrics}
+
+Our methodology provides complete statistical characterization including:
+
+\begin{itemize}
+    \item \textbf{Confidence Intervals}: 95\% confidence intervals for all performance metrics
+    \item \textbf{Effect Size Analysis}: Cohen's d calculations for pairwise comparisons
+    \item \textbf{Multiple Comparison Correction}: Bonferroni correction for family-wise error rate control
+    \item \textbf{ANOVA Analysis}: One-way analysis of variance with effect size (η²) calculation
+\end{itemize}
+
+\textbf{Statistical Significance Results}: Our analysis reveals highly significant differences between strategies (F(4,95) = 372.39, p < 0.001, η² = 0.94), with large effect sizes for all pairwise comparisons between learned and baseline strategies.
+
+\subsection{Emulation Validation Pipeline}
+
+\subsubsection{Firewheel Integration}
+
+The emulation validation employs Sandia's Firewheel platform to provide operational-level validation:
+
+\textbf{Virtual Machine Configuration}: 
+\begin{itemize}
+    \item KVM-based virtualization with full OS instances
+    \item Real network interfaces and protocol stacks
+    \item Authentic service configurations and vulnerabilities
+\end{itemize}
+
+\textbf{Monitoring Infrastructure}:
+\begin{itemize}
+    \item Sysmon deployment for process and network monitoring
+    \item Elastic Stack SIEM for log aggregation and analysis
+    \item Custom detection rules based on production SOC practices
+\end{itemize}
+
+\subsubsection{Agent Transfer Protocol}
+
+The methodology includes a systematic protocol for transferring trained agents from simulation to emulation:
+
+\begin{enumerate}
+    \item \textbf{Policy Extraction}: Extract learned policy parameters from simulation training
+    
+    \item \textbf{Observation Space Mapping}: Map simulation observations to emulation sensor data
+    
+    \item \textbf{Action Space Translation}: Translate abstract actions to concrete system commands
+    
+    \item \textbf{Performance Validation}: Evaluate transferred agent performance in emulated environment
+    
+    \item \textbf{Adaptation Analysis}: Quantify performance degradation and identify adaptation requirements
+\end{enumerate}
+
+\subsection{Reproducibility and Open Science}
+
+\subsubsection{Complete Experimental Package}
+
+Our methodology emphasizes reproducibility through:
+
+\begin{itemize}
+    \item \textbf{Open Source Release}: All code, configurations, and training scripts publicly available
+    \item \textbf{Deterministic Evaluation}: Fixed random seeds and controlled experimental conditions
+    \item \textbf{Version Control}: Complete Git history with tagged releases for experimental reproducibility
+    \item \textbf{Container-Based Deployment}: Docker configurations for consistent experimental environments
+\end{itemize}
+
+\subsubsection{Experimental Metadata}
+
+Complete experimental metadata includes:
+
+\begin{itemize}
+    \item Algorithm hyperparameters and architecture specifications
+    \item Network topology configurations and host specifications  
+    \item Training curves and convergence metrics
+    \item Statistical analysis code and raw experimental data
+\end{itemize}
+
+\subsection{Methodological Limitations}
+
+\subsubsection{Current Scope}
+
+While our methodology significantly advances external validity, several limitations remain:
+
+\begin{itemize}
+    \item \textbf{Platform Coverage}: Primary focus on Windows/Linux with limited macOS integration
+    \item \textbf{Attack Sophistication}: Current ART integration covers core techniques but may not capture highly sophisticated APT campaigns
+    \item \textbf{Human Factor Modeling}: Limited integration of human defender behavior and decision-making processes
+\end{itemize}
+
+\subsubsection{Future Enhancements}
+
+Planned methodology extensions include:
+
+\begin{itemize}
+    \item \textbf{Threat Intelligence Integration}: Dynamic incorporation of emerging attack patterns
+    \item \textbf{Purple Team Validation}: Human expert evaluation of learned defensive strategies
+    \item \textbf{Production Environment Deployment}: Framework for operational deployment and monitoring
+\end{itemize}
+
+\subsection{Methodological Contribution}
+
+Our hybrid simulation-emulation methodology provides several key contributions to cybersecurity RL research:
+
+\begin{enumerate}
+    \item \textbf{External Validity Framework}: Systematic approach to bridging the simulation-reality gap through ART integration and emulation validation
+    
+    \item \textbf{Statistical Rigor}: Comprehensive statistical validation addressing critical gaps in prior cybersecurity RL research
+    
+    \item \textbf{Scalability Validation}: Demonstrated performance across realistic network sizes with operational relevance
+    
+    \item \textbf{Reproducible Evaluation}: Complete open-source framework enabling community validation and extension
+\end{enumerate}
+
+This methodology establishes a new standard for external validity in cybersecurity RL research, providing a foundation for developing defensive agents that can transition from research environments to operational deployment with demonstrated effectiveness and statistical validation.

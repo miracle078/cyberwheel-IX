@@ -1,0 +1,105 @@
+{
+  "comparison_overview": {
+    "agents_compared": [
+      "PPO_BestProduction",
+      "StaticBaseline",
+      "RandomBaseline",
+      "RuleBaseline",
+      "InactiveBaseline"
+    ],
+    "environments_tested": [
+      "small_network",
+      "medium_network"
+    ],
+    "total_trials_per_agent": 2,
+    "episodes_per_trial": 10
+  },
+  "performance_rankings": {
+    "small_network": [
+      {
+        "rank": 1,
+        "agent": "RandomBaseline",
+        "avg_reward": 359.57010387954807,
+        "reward_std": 82.30581927705398,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 2,
+        "agent": "PPO_BestProduction",
+        "avg_reward": 309.14046093269235,
+        "reward_std": 37.37455317761115,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 3,
+        "agent": "StaticBaseline",
+        "avg_reward": 163.81045830167488,
+        "reward_std": 9.817335768838355,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 4,
+        "agent": "RuleBaseline",
+        "avg_reward": 79.15755440447937,
+        "reward_std": 10.003674938996303,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 5,
+        "agent": "InactiveBaseline",
+        "avg_reward": -1.6060173613062587,
+        "reward_std": 12.416793211934607,
+        "success_rate": 1.0
+      }
+    ],
+    "medium_network": [
+      {
+        "rank": 1,
+        "agent": "RandomBaseline",
+        "avg_reward": 484.39964433242596,
+        "reward_std": 71.43374779696164,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 2,
+        "agent": "PPO_BestProduction",
+        "avg_reward": 368.4414826523596,
+        "reward_std": 19.176177961280054,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 3,
+        "agent": "StaticBaseline",
+        "avg_reward": 203.27495259797917,
+        "reward_std": 0.5400648019108136,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 4,
+        "agent": "RuleBaseline",
+        "avg_reward": 113.11270013197513,
+        "reward_std": 32.15066141492621,
+        "success_rate": 1.0
+      },
+      {
+        "rank": 5,
+        "agent": "InactiveBaseline",
+        "avg_reward": -1.5733465940929365,
+        "reward_std": 6.335176172317588,
+        "success_rate": 1.0
+      }
+    ]
+  },
+  "statistical_significance": {},
+  "key_findings": [
+    "Best performing baseline: RandomBaseline (avg reward: 421.98)",
+    "Worst performing baseline: InactiveBaseline (avg reward: -1.59)",
+    "Performance gap between best and worst baseline: 423.57",
+    "Action Distribution Analysis:",
+    "  PPO_BestProduction: Strategic deployment vs random actions",
+    "  StaticBaseline: Strategic deployment vs random actions",
+    "  RandomBaseline: Strategic deployment vs random actions",
+    "  RuleBaseline: Strategic deployment vs random actions",
+    "  InactiveBaseline: Strategic deployment vs random actions"
+  ]
+}

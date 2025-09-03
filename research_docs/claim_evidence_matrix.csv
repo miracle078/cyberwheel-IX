@@ -1,0 +1,7 @@
+claim,category,evidence_artifact,status,action
+"Scalability to 10k hosts",scalability,,proposed,"Add synthetic scaling plan + mark as future benchmark"
+"Statistical significance (CI, ANOVA) established",statistics,,partial,"Implement metrics + add CI; ANOVA pending"
+"Advanced deception metrics implemented",metrics,,partial,"Implement DER/DEI/PSR modules"
+"Baseline comparison shows PPO convergence stability",baselines,baseline_comparison_visualizations/numerical_summary.txt,validated,"Add narrative interpreting variance"
+"Reward shaping amplifies decoy-induced returns",reward,cyberwheel/reward/rl_reward.py,validated,"Add visualization figure"
+"Comprehensive reproducibility documented",reproducibility,,partial,"Add registry + hashing appendix"

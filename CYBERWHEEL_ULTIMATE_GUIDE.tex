@@ -852,16 +852,16 @@ class RLReward(Reward):
 
 The following reward implementations \textbf{exist in the repository} (confirmed by code inspection in \texttt{cyberwheel/reward/}):
 \begin{enumerate}
-    \item \textbf{RLReward} (file: \texttt{rl\_reward.py}) – core symmetric adversarial shaping with decoy amplification
-    \item \textbf{RLRewardProactive} (file: \texttt{rl\_proactive.py}) – proactive/headstart-sensitive blue incentives
-    \item \textbf{RLBaselineReward} (file: \texttt{rl\_baseline\_reward.py}) – simplified baseline with objective variants (delay/detect/downtime/general)
-    \item \textbf{RLSplitReward} (file: \texttt{rl\_split\_reward.py}) – exploration vs exploitation phase splitting (marked TODO for testing)
-    \item \textbf{DecoyReward} (file: \texttt{decoy\_reward.py}) – penalizes under/over-deployment using quadratic scaling; strong decoy regularization
-    \item \textbf{StepDetectedReward} (file: \texttt{step\_detected\_reward.py}) – detection-time–aware shaping (imported in \texttt{__init__.py})
-    \item \textbf{IsolateReward} (file: \texttt{isolate\_reward.py}) – focused on isolation success, minimal shaping (marked for further validation)
+    \item \textbf{RLReward} (file: \texttt{rl\_reward.py}) - core symmetric adversarial shaping with decoy amplification
+    \item \textbf{RLRewardProactive} (file: \texttt{rl\_proactive.py}) - proactive/headstart-sensitive blue incentives
+    \item \textbf{RLBaselineReward} (file: \texttt{rl\_baseline\_reward.py}) - simplified baseline with objective variants (delay/detect/downtime/general)
+    \item \textbf{RLSplitReward} (file: \texttt{rl\_split\_reward.py}) - exploration vs exploitation phase splitting (marked TODO for testing)
+    \item \textbf{DecoyReward} (file: \texttt{decoy\_reward.py}) - penalizes under/over-deployment using quadratic scaling; strong decoy regularization
+    \item \textbf{StepDetectedReward} (file: \texttt{step\_detected\_reward.py}) - detection-time-aware shaping (imported in \texttt{\_\_init\_\_.py})
+    \item \textbf{IsolateReward} (file: \texttt{isolate\_reward.py}) - focused on isolation success, minimal shaping (marked for further validation)
 \end{enumerate}
 
-	extbf{Note}: Some configuration files reference \texttt{RLRewardAsymmetric} but this class is not yet implemented. Use \texttt{RLRewardProactive} for similar functionality.
+\textbf{Note}: Some configuration files reference \texttt{RLRewardAsymmetric} but this class is not yet implemented. Use \texttt{RLRewardProactive} for similar functionality.
 
 \begin{lstlisting}[language=Python, caption=Reward Function Selection Examples (Adjusted)]
 # Valid selections (present in codebase)

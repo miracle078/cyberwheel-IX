@@ -1,0 +1,251 @@
+\documentclass[12pt,oneside,a4paper,portrait]{article}
+
+% ULTRA-AGGRESSIVE PORTRAIT ENFORCEMENT - ABSOLUTELY NO ROTATION
+\usepackage[a4paper,portrait,margin=1in,top=1.2in,bottom=1.2in,noheadfoot]{geometry}
+
+% Multiple redundant portrait enforcement methods
+\pdfpagewidth=210mm
+\pdfpageheight=297mm
+\paperwidth=210mm
+\paperheight=297mm
+\setlength{\pdfpagewidth}{210mm}
+\setlength{\pdfpageheight}{297mm}
+
+% DISABLE ALL ROTATION PACKAGES
+\usepackage{pdflscape}
+\renewcommand{\landscape}{\relax}
+\renewcommand{\endlandscape}{\relax}
+\let\rotate\relax
+\let\rotatebox\relax
+
+% FORCE SPECIFIC PDF VIEWER SETTINGS
+\usepackage{hyperref}
+\hypersetup{
+    pdfpagemode=UseNone,
+    pdfstartview=FitH,
+    pdfpagelayout=SinglePage
+}
+\makeatletter
+\gdef\landscape{\PackageError{pdflscape}{LANDSCAPE DISABLED - PORTRAIT ONLY}{}}
+\gdef\begin#1{\ifx#1landscape\PackageError{pdflscape}{LANDSCAPE DISABLED}{}\fi\csname begin#1\endcsname}
+\makeatother
+
+% Force PDF viewer to display as portrait
+\usepackage{hyperref}
+\hypersetup{pdfpagelayout=SinglePage,pdfstartview=FitH}
+
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\raggedbottom % Prevent stretched vertical spacing
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{adjustbox} % For advanced scaling control
+\usepackage{float}
+
+% Enhanced image scaling to prevent overflow and rotation
+\setkeys{Gin}{width=0.85\linewidth,height=0.75\textheight,keepaspectratio}
+
+% Enhanced TikZ configuration for better diagram layout
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, backgrounds, calc, decorations.pathreplacing}
+
+% TikZ global settings for consistent, properly-sized diagrams
+\tikzset{
+    every picture/.style={
+        font=\small,
+        >=stealth,
+        auto,
+        node distance=1.8cm,
+        thick,
+        transform shape=false, % Prevent unwanted scaling
+        scale=1.0 % Explicit scale control
+    },
+    % Enhanced node styles for better visibility
+    host/.style={rectangle,draw=blue!60,fill=blue!10,thick,minimum width=1.2cm,minimum height=0.7cm,font=\tiny},
+    decoy/.style={rectangle,draw=red!60,fill=red!10,thick,minimum width=1.2cm,minimum height=0.7cm,font=\tiny},
+    subnet/.style={rectangle,draw=green!60,fill=green!5,thick,minimum width=3.5cm,minimum height=1.8cm},
+    agent/.style={ellipse,draw=purple!60,fill=purple!15,thick,minimum width=1.8cm,minimum height=0.9cm,font=\tiny},
+    % Flow styles
+    dataflow/.style={->,thick,blue!70},
+    attack/.style={->,thick,red!70,dashed},
+    defense/.style={->,thick,green!70}
+}
+\usepackage[square,numbers]{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{cleveref}
+
+% Enhanced figure environment with automatic scaling
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{width=0.9\textwidth,font=small}
+
+% Enhanced figure macro with automatic TikZ scaling
+\newcommand{\cwfigure}[4][]{%
+    \begin{figure}[H]
+        \centering
+        \adjustbox{max width=0.9\linewidth,max height=0.7\textheight,center}{%
+            #4
+        }
+        \ifx\relax#1\relax
+            \caption{#3}
+        \else
+            \caption[#1]{#3}
+        \fi
+        \label{#2}
+    \end{figure}
+}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, backgrounds}
+
+% DISABLE ALL TIKZ ROTATION - FORCE PORTRAIT ONLY
+\tikzset{
+    every picture/.style={
+        transform shape=false,
+        rotate=0,
+        baseline=0pt
+    },
+    disable rotation/.style={rotate=0}
+}
+
+\usepackage{colortbl}
+\usepackage{commands} % ensure custom macros (\MC, \bs, \TN, etc.) available before usage
+\definecolor{cwDecoy}{HTML}{2E8B57}
+\definecolor{cwReal}{HTML}{555555}
+\definecolor{cwAlert}{HTML}{C0504D}
+\definecolor{cwFlow}{HTML}{3366CC}
+\definecolor{cwValid}{HTML}{E6F4EA}
+\definecolor{cwPartial}{HTML}{FFF4E5}
+\definecolor{cwBorder}{HTML}{CCCCCC}
+\emergencystretch=1em
+\sloppy
+
+% Central TikZ styles for consistency across diagrams (corrected)
+\tikzset{
+    cwHost/.style={draw=cwBorder,rounded corners,fill=white,inner sep=3pt,minimum width=1.6cm,minimum height=0.7cm},
+    cwDecoyNode/.style={cwHost,fill=cwDecoy!22,draw=cwDecoy},
+    cwPhase/.style={draw=cwAlert!70,rounded corners,fill=cwAlert!12,inner sep=4pt,minimum width=2.4cm},
+    cwAction/.style={draw=cwDecoy!60!black,rounded corners,fill=cwDecoy!18,inner sep=4pt,minimum width=2.2cm},
+    cwState/.style={draw=cwFlow!60,rounded corners,fill=cwFlow!12,inner sep=4pt,minimum width=2.2cm},
+    cwFlowArrow/.style={-Latex,thick,cwFlow},
+    cwDecoyArrow/.style={-Latex,thick,cwDecoy,dashed},
+    % Global figure styles
+    block/.style={draw=cwBorder, very thick, rounded corners, inner sep=6pt, align=left, text width=3.2cm, minimum height=1.8cm},
+    envblock/.style={draw=cwBorder, very thick, rounded corners, inner sep=8pt, align=left, text width=4.2cm, minimum height=3.4cm, fill=cwFlow!12},
+    fwd/.style={->, thick, >=Stealth, draw=cwBorder},
+    reward/.style={->, thick, >=Stealth, draw=cwReal},
+    phaseBox/.style={draw=cwBorder, very thick, rounded corners, inner sep=6pt, minimum width=3.5cm, minimum height=1.7cm, align=left, text width=3.4cm},
+    loopArrow/.style={->, thick, >=Stealth, draw=cwDecoy},
+    cat/.style={draw=cwBorder, very thick, rounded corners, inner sep=6pt, minimum width=4.2cm, minimum height=2.0cm, align=left, text width=4.1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis information  
+\newcommand{\thesistitle}{Reinforcement Learning for Adaptive Cyber Defense: PPO-Based Decoy Deployment Optimization Using Cyberwheel}
+\newcommand{\thesisauthor}{Miracle Akanmode}
+\newcommand{\supervisor}{Kelly Zhang}
+\newcommand{\degreetype}{Artificial Intelligence Applications and Innovation}
+\newcommand{\university}{Imperial College London}
+\newcommand{\department}{Department of Computing}
+\newcommand{\submissiondate}{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\what}[1]{\widehat{#1}} % Wide hat (redefined safely)
+ 
+\newcommand{\R}{\bs{\MC{R}}}
+\newcommand{\Rhat}{\bs{\hat{\MC{R}}}}
+\newcommand{\Dtrain}{\MC{D}^{\TN{offline}}}
+\newcommand{\Deval}{\MC{D}^{\TN{eval}}}
+\newcommand{\D}{\MC{D}}
+\newcommand{\Ahist}{\MC{A}^{\TN{offline}}}
+\newcommand{\Aeval}{\MC{A}}
+\newcommand{\Zeval}{\MC{Z}}
+\newcommand{\psar}{\mathbb{A}_{\TN{TS-Gen}}}
+\newcommand{\piX}{\bs{\pi}^*(X_{1:T})}
+
+% (subcaption, tcolorbox, commands loaded earlier)
+%\usepackage{algpseudocode}
+
+\makeatletter
+\newcounter{phase}[algorithm]
+\newlength{\phaserulewidth}
+\newcommand{\setphaserulewidth}{\setlength{\phaserulewidth}}
+\newcommand{\phase}[1]{%
+  \vspace{-1.25ex}
+  % Top phase rule
+  \Statex\leavevmode\llap{\rule{\dimexpr\labelwidth+\labelsep}{\phaserulewidth}}\rule{\linewidth}{\phaserulewidth}
+  \Statex\strut\refstepcounter{phase}\textit{Phase~\thephase~--~#1}% Phase text
+  % Bottom phase rule
+  \vspace{-1.25ex}\Statex\leavevmode\llap{\rule{\dimexpr\labelwidth+\labelsep}{\phaserulewidth}}\rule{\linewidth}{\phaserulewidth}}
+\makeatother
+
+\setphaserulewidth{.7pt}
+
+% packages (deduplicated geometry/color)
+%\usepackage{color}
+% (removed duplicate package declarations consolidated above)
+
+% theorems
+\newtheorem{theorem}{Theorem} %[section]
+\newtheorem{lemma}{Lemma} %[theorem]
+\newtheorem{assumption}{Assumption} %[theorem]
+\newtheorem{corollary}{Corollary} %[theorem]
+\newtheorem{definition}{Definition} % DH: I changed this %[theorem]
+\theoremstyle{definition}
+\theoremstyle{plain}
+%\newtheorem{definition}{Definition} %[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+
+\usepackage{multirow}
+
+%\usepackage{amsmath}
+\usepackage{array}
+\newcommand\undermat[2]{%
+  \makebox[0pt][l]{$\smash{\underbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+
+% Custom commands are now in commands.sty
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+\begin{center}
+\vspace*{2cm}
+
+{\Huge\textbf{\thesistitle}}
+
+\vspace{1.5cm}
+
+{\large\textbf{A Comprehensive Experimental Analysis of Defensive Strategy Learning in Cybersecurity}}
+
+\vspace{2cm}
+
+{\Large\textbf{\thesisauthor}}
+
+\vspace{1.5cm}
+
+{\large A thesis submitted in partial fulfillment of the requirements for the degree of \\ Master of Science in \degreetype}
+
+\vspace{1.5cm}
+
+{\large\textbf{\department} \\ \textbf{\university}}
+
+\vspace{1cm}
+
+{\large Supervisor: \supervisor}
+
+\vspace{1.5cm}
+
+{\large\submissiondate}
+
+\end{center}
+\end{titlepage}
+\end{document}

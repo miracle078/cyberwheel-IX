@@ -1,0 +1,186 @@
+{
+  "small_network": {
+    "PPO_BestProduction": {
+      "agent_name": "PPO_BestProduction",
+      "total_reward": 309.14046093269235,
+      "avg_reward_per_episode": 30.914046093269235,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 204,
+        "remove_decoy_host": 192,
+        "nothing": 604
+      },
+      "convergence_metrics": {
+        "reward_variance": 1396.8572252260833,
+        "reward_std": 37.37455317761115,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "StaticBaseline": {
+      "agent_name": "StaticBaseline",
+      "total_reward": 163.81045830167488,
+      "avg_reward_per_episode": 16.38104583016749,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 104,
+        "remove_decoy_host": 96,
+        "nothing": 800
+      },
+      "convergence_metrics": {
+        "reward_variance": 96.38008159811295,
+        "reward_std": 9.817335768838355,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "RandomBaseline": {
+      "agent_name": "RandomBaseline",
+      "total_reward": 359.57010387954807,
+      "avg_reward_per_episode": 35.95701038795481,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 244,
+        "remove_decoy_host": 246,
+        "nothing": 510
+      },
+      "convergence_metrics": {
+        "reward_variance": 6774.2478868670705,
+        "reward_std": 82.30581927705398,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "RuleBaseline": {
+      "agent_name": "RuleBaseline",
+      "total_reward": 79.15755440447937,
+      "avg_reward_per_episode": 7.915755440447937,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 54,
+        "remove_decoy_host": 44,
+        "nothing": 902
+      },
+      "convergence_metrics": {
+        "reward_variance": 100.0735122851027,
+        "reward_std": 10.003674938996303,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "InactiveBaseline": {
+      "agent_name": "InactiveBaseline",
+      "total_reward": -1.6060173613062587,
+      "avg_reward_per_episode": -0.1606017361306259,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 0,
+        "remove_decoy_host": 0,
+        "nothing": 1000
+      },
+      "convergence_metrics": {
+        "reward_variance": 154.17675366794535,
+        "reward_std": 12.416793211934607,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    }
+  },
+  "medium_network": {
+    "PPO_BestProduction": {
+      "agent_name": "PPO_BestProduction",
+      "total_reward": 368.4414826523596,
+      "avg_reward_per_episode": 36.84414826523596,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 188,
+        "remove_decoy_host": 169,
+        "nothing": 643
+      },
+      "convergence_metrics": {
+        "reward_variance": 367.7258012026829,
+        "reward_std": 19.176177961280054,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "StaticBaseline": {
+      "agent_name": "StaticBaseline",
+      "total_reward": 203.27495259797917,
+      "avg_reward_per_episode": 20.327495259797914,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 104,
+        "remove_decoy_host": 96,
+        "nothing": 800
+      },
+      "convergence_metrics": {
+        "reward_variance": 0.2916699902629664,
+        "reward_std": 0.5400648019108136,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "RandomBaseline": {
+      "agent_name": "RandomBaseline",
+      "total_reward": 484.39964433242596,
+      "avg_reward_per_episode": 48.4399644332426,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 253,
+        "remove_decoy_host": 232,
+        "nothing": 515
+      },
+      "convergence_metrics": {
+        "reward_variance": 5102.780324319921,
+        "reward_std": 71.43374779696164,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "RuleBaseline": {
+      "agent_name": "RuleBaseline",
+      "total_reward": 113.11270013197513,
+      "avg_reward_per_episode": 11.311270013197513,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 54,
+        "remove_decoy_host": 44,
+        "nothing": 902
+      },
+      "convergence_metrics": {
+        "reward_variance": 1033.665029417225,
+        "reward_std": 32.15066141492621,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    },
+    "InactiveBaseline": {
+      "agent_name": "InactiveBaseline",
+      "total_reward": -1.5733465940929365,
+      "avg_reward_per_episode": -0.15733465940929367,
+      "successful_actions": 1000,
+      "failed_actions": 0,
+      "action_distribution": {
+        "deploy_decoy_host": 0,
+        "remove_decoy_host": 0,
+        "nothing": 1000
+      },
+      "convergence_metrics": {
+        "reward_variance": 40.13445713430053,
+        "reward_std": 6.335176172317588,
+        "avg_episode_length": 50,
+        "episode_length_std": 0.0
+      }
+    }
+  }
+}
