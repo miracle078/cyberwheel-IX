@@ -1,0 +1,36 @@
+@startuml observation_vector_new
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 9
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+package "Blue Agent Observation Vector" {
+  package "Current Alerts |H| dimensions" {
+    component [**Host 1 Alert**\nImmediate threat\ndetection] as Current1 #FFE6E6
+    component [**Host 2 Alert**\nImmediate threat\ndetection] as Current2 #FFE6E6
+    component [**...**] as CurrentDots #F0F0F0
+    component [**Host N Alert**\nImmediate threat\ndetection] as CurrentN #FFE6E6
+  }
+
+  package "Historical Alerts |H| dimensions" {
+    component [**Host 1 History**\nPattern learning\nsticky memory] as History1 #E6F3FF
+    component [**Host 2 History**\nPattern learning\nsticky memory] as History2 #E6F3FF
+    component [**...**] as HistoryDots #F0F0F0
+    component [**Host N History**\nPattern learning\nsticky memory] as HistoryN #E6F3FF
+  }
+
+  package "Metadata 2 dimensions" {
+    component [**Headstart Flag**\n-1: Normal\n1: Headstart] as Headstart #E6FFE6
+    component [**Decoy Count**\nActive decoys\nin network] as DecoyCount #FFF2CC
+  }
+}
+
+note right : Total Dimensions: 2|H| + 2\nImmediate + Historical + Metadata
+
+@enduml

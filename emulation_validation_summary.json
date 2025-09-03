@@ -1,0 +1,21 @@
+{
+  "total_commands_executed": 66,
+  "unique_techniques": 9,
+  "success_rate": 0.8484848484848485,
+  "hosts_affected": 5,
+  "technique_distribution": {
+    "T1105": 16,
+    "T1082": 6,
+    "T1055": 9,
+    "T1543": 5,
+    "T1486": 8,
+    "T1490": 7,
+    "T1021": 10,
+    "T1057": 3,
+    "T1083": 2
+  },
+  "average_execution_time": 0.7595454545454544,
+  "total_experiment_duration": 99.3,
+  "final_reward": -260.0,
+  "total_steps": 6
+}

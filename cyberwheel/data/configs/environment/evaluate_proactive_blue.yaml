@@ -79,6 +79,6 @@ network_config: 15-host-network.yaml
 decoy_config: decoy_hosts.yaml
 host_config: host_defs_services.yaml
 detector_config: detector_handler.yaml
-reward_function: RLRewardAsymmetric
+reward_function: RLRewardProactive
 num_steps: 100
 num_episodes: 50

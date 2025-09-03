@@ -1,0 +1,4 @@
+cyberwheel-complete/
+__pycache__/
+*.log
+*.aux

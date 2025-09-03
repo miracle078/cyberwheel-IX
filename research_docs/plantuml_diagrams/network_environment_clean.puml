@@ -1,0 +1,35 @@
+@startuml network_environment_clean
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+package "DMZ Subnet" #FFE6E6 {
+  node "Web Server" as Web
+  node "Mail Server" as Mail
+  node "Decoy Web" as DecoyWeb #FFCCCC
+}
+
+package "Internal Subnet 1" #E6FFE6 {
+  node "Workstation 1" as WS1
+  node "File Server" as FileServ
+  node "Decoy DB" as DecoyDB #CCFFCC
+}
+
+package "Internal Subnet 2" #E6F3FF {
+  node "Database" as DB
+  node "App Server" as AppServ
+  node "Decoy File" as DecoyFile #CCE6FF
+}
+
+actor "Red Agent\nMITRE ATT&CK\nAttack Techniques" as RedAgent #FF9999
+actor "Blue Agent\nPPO Defense\nDecoy Deployment" as BlueAgent #9999FF
+
+RedAgent --> Web : Attack
+RedAgent --> WS1 : Lateral Movement
+BlueAgent --> DecoyWeb : Deploy Decoy
+BlueAgent --> DecoyDB : Monitor
+
+note right of RedAgent : 295 attack techniques\nacross 4 phases
+note left of BlueAgent : Strategic decoy\nplacement learning
+
+@enduml

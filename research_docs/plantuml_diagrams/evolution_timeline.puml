@@ -1,0 +1,51 @@
+@startuml evolution_timeline
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+skinparam rectangle {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 1
+}
+
+rectangle "**Generation 1**
+Rule-Based
+(1990s-2000s)
+
+Static Firewalls
+Reactive Response" as Gen1 #FFE6E6
+
+rectangle "**Generation 2**
+ML Defense
+(2000s-2010s)
+
+Pattern Recognition
+Signature Detection" as Gen2 #E6F3FF
+
+rectangle "**Generation 3**
+Adaptive Learning
+(2010s-Present)
+
+Dynamic Adaptation
+Behavior Analysis" as Gen3 #E6FFE6
+
+rectangle "**Generation 4**
+Adversarial Learning
+(Our Work)
+
+Predictive Defense
+Adversarial Training" as Gen4 #FFFACD
+
+Gen1 -right-> Gen2 : Evolution
+Gen2 -right-> Gen3 : Evolution  
+Gen3 -right-> Gen4 : **Our
+Contribution**
+
+note bottom of Gen1 : 1990
+note bottom of Gen2 : 2000
+note bottom of Gen3 : 2010
+note bottom of Gen4 : 2025
+
+@enduml

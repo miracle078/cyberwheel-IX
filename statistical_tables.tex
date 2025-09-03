@@ -1,0 +1,45 @@
+% Table 1: Agent Performance Comparison with Statistical Tests
+\begin{table}[H]
+\centering
+\caption{Agent Performance Comparison with Statistical Validation}
+\label{tab:agent_performance}
+\begin{tabular}{lccccccc}
+\toprule
+Agent & N & Mean & SD & 95\% CI & Min & Max & Median \\
+\midrule
+Random & 20 & 456.43 & 82.02 & [418.04, 494.82] & 320.93 & 597.21 & 467.67 \\
+PPO & 20 & 351.46 & 33.55 & [335.76, 367.16] & 291.59 & 398.72 & 363.95 \\
+Static & 20 & 185.86 & 18.76 & [177.08, 194.64] & 159.20 & 204.13 & 191.17 \\
+Rule & 20 & 105.58 & 28.06 & [92.45, 118.71] & 74.46 & 163.89 & 96.49 \\
+Inactive & 20 & 2.61 & 7.07 & [-0.70, 5.92] & -7.44 & 18.00 & 2.20 \\
+\midrule
+\multicolumn{8}{l}{\textbf{ANOVA Results:}} \\
+\multicolumn{8}{l}{$F(4, 95) = 372.391$, $p = 0.0000$, $\eta^2 = 0.940$} \\
+\multicolumn{8}{l}{Effect size: large (Cohen, 1988)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 2: Pairwise Comparison Results
+\begin{table}[H]
+\centering
+\caption{Pairwise Agent Comparisons with Multiple Testing Correction}
+\label{tab:pairwise_comparisons}
+\begin{tabular}{lccccccc}
+\toprule
+Comparison & Mean Diff & t-statistic & p-value & p-adj (Bonf.) & Cohen's d & Effect Size & Significant* \\
+\midrule
+Random vs PPO_BestProduction & 104.97 & 5.297 & 0.0000 & 0.0001 & 1.675 & Large & Yes \\
+Random vs Static & 270.56 & 14.381 & 0.0000 & 0.0000 & 4.548 & Large & Yes \\
+Random vs Rule & 350.85 & 18.099 & 0.0000 & 0.0000 & 5.724 & Large & Yes \\
+Random vs Inactive & 453.82 & 24.652 & 0.0000 & 0.0000 & 7.796 & Large & Yes \\
+PPO_BestProduction vs Static & 165.60 & 19.267 & 0.0000 & 0.0000 & 6.093 & Large & Yes \\
+PPO_BestProduction vs Rule & 245.88 & 25.143 & 0.0000 & 0.0000 & 7.951 & Large & Yes \\
+PPO_BestProduction vs Inactive & 348.85 & 45.505 & 0.0000 & 0.0000 & 14.390 & Large & Yes \\
+Static vs Rule & 80.28 & 10.637 & 0.0000 & 0.0000 & 3.364 & Large & Yes \\
+Static vs Inactive & 183.25 & 40.873 & 0.0000 & 0.0000 & 12.925 & Large & Yes \\
+Rule vs Inactive & 102.97 & 15.913 & 0.0000 & 0.0000 & 5.032 & Large & Yes \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize *Significant after Bonferroni correction ($\alpha = 0.05$)} \\
+\end{tabular}
+\end{table}

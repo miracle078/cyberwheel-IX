@@ -1,0 +1,257 @@
+@startuml slide1_network_background
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+node "Web Server" as web #E3F2FD
+node "Database" as db #E3F2FD  
+node "Workstation" as ws #E3F2FD
+node "Firewall" as fw #1976D2
+node "Decoy Server" as decoy #4CAF50
+
+web -- fw
+db -- fw
+fw -- ws
+fw -- decoy
+@enduml
+
+@startuml slide2_problem_solution
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Traditional Cyber Defense\nProblems" as problems #F44336
+rectangle "SULI Solution" as solution #4CAF50
+
+problems --> solution
+
+actor "Red Team" as red #F44336
+actor "Blue Team" as blue #0066CC
+
+red <--> blue : Adversarial Learning
+@enduml
+
+@startuml slide3_reinforcement_learning
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Environment" as env #E3F2FD
+rectangle "Agent" as agent #0066CC
+rectangle "Action" as action #4CAF50
+rectangle "Reward" as reward #FF9800
+
+agent -> action
+action -> env
+env -> reward
+reward -> agent
+@enduml
+
+@startuml slide4_adversarial_learning
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+actor "Red Agent" as red #F44336
+actor "Blue Agent" as blue #0066CC
+
+red <--> blue : Competition
+
+rectangle "Arms Race" as race #FFA726
+red --> race
+blue --> race
+@enduml
+
+@startuml slide5_network_environment
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+package "Enterprise Network" {
+  package "DMZ" {
+    node "Web Server"
+    node "Mail Server"
+  }
+  
+  package "Internal" {
+    node "Workstation 1"
+    node "Workstation 2"
+  }
+  
+  package "Servers" {
+    node "Database"
+    node "File Server"
+  }
+  
+  package "Decoys" {
+    node "Decoy Web" #4CAF50
+    node "Decoy DB" #4CAF50
+  }
+}
+
+node "Firewall" #1976D2
+cloud "Internet"
+
+Internet --> Firewall
+Firewall --> DMZ
+Firewall --> Internal
+Firewall --> Servers
+Firewall --> Decoys
+@enduml
+
+@startuml slide6_agent_capabilities
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Red Agent\n(295 MITRE Techniques)" as red #FFEBEE
+rectangle "Blue Agent\n(Strategic Defense)" as blue #E3F2FD
+
+rectangle "Discovery" as disc
+rectangle "Reconnaissance" as recon
+rectangle "Exploitation" as exploit
+rectangle "Impact" as impact
+
+red --> disc
+disc --> recon
+recon --> exploit
+exploit --> impact
+
+rectangle "Deploy Decoys" as deploy
+rectangle "Monitor" as monitor
+rectangle "Isolate" as isolate
+rectangle "Respond" as respond
+
+blue --> deploy
+deploy --> monitor
+monitor --> isolate
+isolate --> respond
+@enduml
+
+@startuml slide7_reward_system
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Red Rewards" as red_rewards #FFEBEE
+rectangle "Blue Rewards" as blue_rewards #E3F2FD
+
+rectangle "+Points\nSuccessful attacks" as red_pos #4CAF50
+rectangle "-Penalty\nGetting detected" as red_neg #F44336
+
+rectangle "+BIG Points\n10x for deception!" as blue_big #4CAF50
+rectangle "+Points\nProtecting systems" as blue_pos #81C784
+rectangle "-Points\nDecoy costs" as blue_neg #F44336
+
+red_rewards --> red_pos
+red_rewards --> red_neg
+
+blue_rewards --> blue_big
+blue_rewards --> blue_pos
+blue_rewards --> blue_neg
+@enduml
+
+@startuml slide8_ppo_algorithm
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Current Strategy" as current #4CAF50
+rectangle "New Strategy" as new_strategy #FFA726
+rectangle "PPO Decision" as ppo #E3F2FD
+
+current --> ppo
+new_strategy --> ppo
+ppo --> "Updated Strategy"
+
+note right of ppo : Cautious improvements\nonly
+@enduml
+
+@startuml slide9_suli_innovation
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Traditional Training\nProblems" as problem #FFEBEE
+rectangle "SULI Solution" as solution #E8F5E8
+
+actor "Agent A" as a1 #9C27B0
+actor "Agent B" as a2 #9C27B0
+
+problem --> solution : SULI fixes
+
+a1 <--> a2 : Learn together
+
+note bottom of a1 : Both start with\nuniform initialization
+@enduml
+
+@startuml slide10_experimental_results
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "32+ Million\nTraining Steps" as steps #4CAF50
+rectangle "8 Major\nConfigurations" as configs #2196F3
+rectangle "15 to 10,000\nComputer Networks" as networks #FF9800
+
+rectangle "90% Reduction\nin Training Failures" as result1 #4CAF50
+rectangle "Deception > Detection\nStrategies" as result2 #2196F3
+rectangle "Enterprise Scale\nValidation" as result3 #FF9800
+
+steps --> result1
+configs --> result2
+networks --> result3
+@enduml
+
+@startuml slide11_contributions
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Cybersecurity\nContributions" as cyber #FFEBEE
+rectangle "AI Research\nContributions" as ai #E3F2FD
+rectangle "Practical\nContributions" as practice #E8F5E8
+
+cyber <--> ai : Cross-domain impact
+ai <--> practice : Research to deployment
+practice <--> cyber : Real-world validation
+
+rectangle "Theory to Practice\nBridge" as bridge #FFFDE7
+bridge --> cyber
+bridge --> ai
+bridge --> practice
+@enduml
+
+@startuml slide12_demo_setup
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Live Demo Dashboard" as dashboard #E3F2FD
+
+rectangle "Network Status" as network
+rectangle "Red Agent Status" as red_status #FFEBEE
+rectangle "Blue Agent Status" as blue_status #E8F5E8
+rectangle "Learning Progress" as progress #FFFDE7
+
+dashboard --> network
+dashboard --> red_status
+dashboard --> blue_status
+dashboard --> progress
+
+note right of dashboard : Real-time\ninteraction
+@enduml
+
+@startuml slide13_future_directions
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Immediate Steps" as immediate #E3F2FD
+rectangle "Long-term Vision" as longterm #E8F5E8
+
+rectangle "Curriculum Learning" as curriculum
+rectangle "Scale Expansion" as scale_exp
+rectangle "Real-World Testing" as testing
+
+rectangle "Cross-Domain Apps" as cross
+rectangle "Human-AI Collab" as human
+rectangle "Theoretical Advances" as theory
+
+immediate --> curriculum
+immediate --> scale_exp
+immediate --> testing
+
+longterm --> cross
+longterm --> human
+longterm --> theory
+
+immediate --> longterm : Research progression
+@enduml

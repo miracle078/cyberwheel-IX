@@ -1,0 +1,58 @@
+BASELINE COMPARISON NUMERICAL SUMMARY
+====================================
+
+PERFORMANCE RANKINGS:
+1. RandomBaseline: 421.98 (±76.87)
+2. PPO_BestProduction: 338.79 (±28.28)
+3. StaticBaseline: 183.54 (±5.18)
+4. RuleBaseline: 96.14 (±21.08)
+5. InactiveBaseline: -1.59 (±9.38)
+
+STATISTICAL ANALYSIS:
+- Performance Gap (Best - Worst): 423.57 points
+- PPO Performance: 338.79 (Rank #2)
+- PPO Consistency: 28.28 std dev
+- Random Performance: 421.98 (Rank #1, High Variance)
+
+ENVIRONMENT-SPECIFIC RESULTS:
+
+Small Network:
+1. RandomBaseline: 359.57
+2. PPO_BestProduction: 309.14
+3. StaticBaseline: 163.81
+4. RuleBaseline: 79.16
+5. InactiveBaseline: -1.61
+
+Medium Network:
+1. RandomBaseline: 484.40
+2. PPO_BestProduction: 368.44
+3. StaticBaseline: 203.27
+4. RuleBaseline: 113.11
+5. InactiveBaseline: -1.57
+
+ACTION DISTRIBUTION ANALYSIS:
+
+PPO_BestProduction:
+  Deploy: 19.6% (392 actions)
+  Remove: 18.1% (361 actions)
+  Nothing: 62.4% (1247 actions)
+
+StaticBaseline:
+  Deploy: 10.4% (208 actions)
+  Remove: 9.6% (192 actions)
+  Nothing: 80.0% (1600 actions)
+
+RandomBaseline:
+  Deploy: 24.9% (497 actions)
+  Remove: 23.9% (478 actions)
+  Nothing: 51.2% (1025 actions)
+
+RuleBaseline:
+  Deploy: 5.4% (108 actions)
+  Remove: 4.4% (88 actions)
+  Nothing: 90.2% (1804 actions)
+
+InactiveBaseline:
+  Deploy: 0.0% (0 actions)
+  Remove: 0.0% (0 actions)
+  Nothing: 100.0% (2000 actions)

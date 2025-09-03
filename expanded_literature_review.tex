@@ -1,0 +1,180 @@
+% EXPANDED LITERATURE REVIEW - ADDRESSING CRITICAL GAPS
+% =====================================================
+% This section addresses the critical lack of foundational citations
+% identified in the comprehensive academic review.
+
+\section{Related Work}
+
+The intersection of reinforcement learning, cybersecurity, and adversarial training has emerged as a critical research domain over the past two decades. This section provides a comprehensive review of foundational works and recent advances that inform our approach.
+
+\subsection{Foundations of Reinforcement Learning}
+
+Reinforcement learning provides the mathematical framework for learning optimal decision-making policies through environmental interaction. The foundational work by \citet{sutton2018reinforcement} established the theoretical underpinnings of value functions, policy gradients, and temporal difference learning that form the basis of modern RL algorithms.
+
+The development of deep reinforcement learning began with the breakthrough work of \citet{mnih2015human}, who demonstrated that neural networks could learn complex control policies directly from high-dimensional sensory input. This Deep Q-Network (DQN) approach showed superhuman performance on Atari games and established the viability of deep RL for complex sequential decision-making problems.
+
+Building upon DQN, \citet{mnih2016asynchronous} introduced the Asynchronous Advantage Actor-Critic (A3C) algorithm, which enabled stable training through parallel environment interactions. The actor-critic architecture, combining value function approximation with direct policy optimization, became a cornerstone of modern RL algorithms.
+
+The Proximal Policy Optimization (PPO) algorithm, introduced by \citet{schulman2017proximal}, addressed the challenge of stable policy updates in deep RL. PPO's clipped objective function prevents destructively large policy updates while maintaining sample efficiency, making it particularly suitable for complex environments like cybersecurity scenarios. Our work builds directly upon PPO due to its demonstrated stability and effectiveness across diverse domains.
+
+\subsection{Game Theory and Cybersecurity}
+
+Classical game theory provided the initial mathematical framework for modeling attacker-defender dynamics in cyber environments. \citet{alpcan2010network} established the theoretical foundations for network security games, demonstrating how strategic interactions between attackers and defenders could be formalized using game-theoretic principles.
+
+\citet{roy2010survey} provided a comprehensive survey of game theory applications in network security, identifying key challenges in modeling realistic attack scenarios and defender capabilities. Their work highlighted the limitations of static equilibrium concepts when dealing with adaptive adversaries, motivating the development of learning-based approaches.
+
+The work of \citet{zhu2021survey} extended game-theoretic analysis to cyber deception, providing theoretical frameworks for optimal deception deployment strategies. Their survey established the mathematical foundations for understanding when and how deceptive elements (such as honeypots and decoys) can be strategically deployed to maximize defender advantage.
+
+\subsection{Machine Learning in Cybersecurity}
+
+The application of machine learning to cybersecurity began with supervised learning approaches for intrusion detection. \citet{sommer2010outside} provided a critical analysis of machine learning limitations in cybersecurity contexts, identifying key challenges including the semantic gap between statistical patterns and security threats, high dimensionality of network data, and the adversarial nature of the security domain.
+
+\citet{goodfellow2014explaining} introduced the concept of adversarial examples in deep learning, revealing fundamental vulnerabilities in neural networks when facing adversarial inputs. This work highlighted the critical importance of adversarial robustness in security applications and motivated the development of adversarial training methodologies.
+
+The discovery of adversarial examples led to the development of adversarial training techniques by \citet{madry2017towards}, who demonstrated that training neural networks against adversarially perturbed inputs could improve robustness. This approach established the foundation for adversarial learning in cybersecurity contexts.
+
+\subsection{Reinforcement Learning for Cyber Defense}
+
+Early applications of RL to cybersecurity focused on intrusion detection and response. \citet{malialis2015distributed} demonstrated that multi-agent RL could be applied to distributed intrusion detection, showing improved detection rates compared to traditional signature-based approaches.
+
+\citet{hu2020automated} advanced the field by applying deep RL to automated penetration testing, demonstrating that RL agents could learn to exploit network vulnerabilities through trial-and-error interaction. Their work established the viability of RL for complex cybersecurity tasks but highlighted the need for more realistic training environments.
+
+Recent advances by \citet{hammar2020finding} applied RL to security strategy optimization, demonstrating that agents could learn effective defensive strategies through self-play training. Their work provided important insights into the convergence properties of security games and the importance of diverse training scenarios.
+
+\subsection{Adversarial Multi-Agent Reinforcement Learning}
+
+The transition to adversarial multi-agent systems represents a significant advancement in cybersecurity RL research. \citet{tampuu2017multiagent} demonstrated the fundamental principles of competitive multi-agent RL, showing how agents could learn complex strategies through adversarial interaction.
+
+\citet{borchjes2023adversarial} conducted pioneering work in adversarial deep reinforcement learning for cybersecurity in software-defined networks. Their research implemented multi-agent games with DDQN and NEC2DQN algorithms, demonstrating the feasibility of adversarial training in cybersecurity contexts and utilizing causative attacks in white-box settings to evaluate agent robustness.
+
+\citet{farooq2025combining} recently advanced the field by combining supervised and reinforcement learning to build generic defensive cyber agents. Their approach represents important progress in creating adaptable blue agents, though their evaluation focused on single-defender scenarios without extensive deception strategy analysis.
+
+Self-play training has demonstrated significant success in competitive domains, from chess and Go \citep{silver2016mastering,silver2017mastering} to more recent applications in multi-agent RL. \citet{bai2020provable} established theoretical foundations for provable self-play algorithms in competitive reinforcement learning, providing important convergence guarantees for adversarial training scenarios.
+
+\subsection{Cyber Deception and Defensive Strategies}
+
+Cyber deception has emerged as a critical component of modern defensive strategies. \citet{rowe2006introduction} provided early foundations for deception in cybersecurity, establishing taxonomies of deceptive techniques and their strategic applications.
+
+\citet{carroll2011analysis} advanced the theoretical understanding of cyber deception through game-theoretic analysis, demonstrating optimal conditions for deception deployment and quantifying the strategic advantage provided by misleading adversaries about system configurations.
+
+Recent advances in deception research have focused on adaptive and intelligent deployment strategies. \citet{zhang2022optimal} developed optimal strategy selection for cyber deception using deep reinforcement learning, demonstrating the potential for RL-driven deception mechanisms. Their work showed significant performance improvements over static deception strategies.
+
+\citet{anwar2022honeypot} advanced honeypot allocation techniques under uncertainty, utilizing game-theoretic and reinforcement learning models. Their research provided important insights into resource-constrained deception deployment, particularly relevant for enterprise environments with limited security resources.
+
+\subsection{Atomic Red Team and MITRE ATT\&CK Framework}
+
+The MITRE ATT\&CK framework \citep{strom2018attack} revolutionized cybersecurity by providing a comprehensive taxonomy of adversarial tactics and techniques based on real-world observations. This framework enables the systematic categorization of attack behaviors and provides a common language for describing adversarial activities.
+
+The Atomic Red Team project \citep{redcanary2022atomic} extended the ATT\&CK framework by providing executable test cases for each technique. These atomic tests contain actual commands and procedures used by attackers, enabling security teams to validate their defensive capabilities against known attack patterns.
+
+\citet{applebaum2016intelligent} demonstrated the importance of realistic attack simulation for cybersecurity research, showing that simplified attack models could lead to ineffective defensive strategies when deployed against real adversaries.
+
+\subsection{Current State-of-the-Art and Research Gaps}
+
+Recent surveys by \citet{vyas2023automated} have comprehensively analyzed the current state of automated cyber defense research, identifying key challenges in training stability, convergence, and opponent modeling. Their analysis highlighted significant gaps between simulation-based research and real-world applicability.
+
+\citet{zhang2024survey} provided a comprehensive analysis of self-play methods in reinforcement learning, identifying key challenges in training stability and convergence. However, the application of systematic self-play methodologies to cybersecurity domains remains limited, with most existing approaches utilizing basic adversarial training without specialized initialization or stability mechanisms.
+
+\citet{oh2023applying} presented one of the first comprehensive studies applying RL for enhanced cybersecurity against adversarial simulation, demonstrating the potential for automated defensive agents. Their work established important baselines for RL-based cyber defense but focused primarily on single-agent scenarios without extensive multi-agent interaction analysis.
+
+Building upon this foundation, \citet{oh2024employing} extended their approach to cyber-attack simulation, developing an experimental research platform for training automated agents. While their work advanced the field significantly, it primarily concentrated on attack simulation rather than comprehensive defensive strategy optimization.
+
+\subsection{Training Environment Limitations}
+
+Existing cybersecurity RL training environments face significant limitations that our work addresses. \citet{standen2021cyborg} developed CybORG, one of the most widely used cybersecurity RL environments, but their platform lacks scalability to large networks and provides limited emulation capabilities.
+
+\citet{molina2021network} identified key requirements for cybersecurity training environments, emphasizing the need for realistic network topologies, scalable architectures, and robust evaluation frameworks. Their analysis highlighted the gap between current simulation capabilities and operational requirements.
+
+The work presented in this paper addresses these limitations through Cyberwheel's hybrid simulation-emulation architecture, providing both the scalability needed for RL training and the fidelity required for realistic evaluation.
+
+\subsection{Positioning of Our Contributions}
+
+Our research builds upon these foundational works while addressing critical gaps in the current literature:
+
+\begin{enumerate}
+    \item \textbf{Hybrid Simulation-Emulation Architecture}: Unlike previous work that focuses exclusively on either simulation or emulation, our approach provides a seamless transition from high-speed RL training to high-fidelity validation.
+    
+    \item \textbf{Atomic Red Team Integration}: We provide the first systematic integration of ART techniques into an RL training environment, ensuring behavioral fidelity to real-world attack patterns.
+    
+    \item \textbf{Comprehensive Baseline Evaluation}: Our systematic comparison across five distinct defensive strategies with rigorous statistical validation provides the first comprehensive benchmark for cybersecurity RL research.
+    
+    \item \textbf{Scalability Validation}: We demonstrate consistent performance across network sizes from 15 to 200 hosts, addressing a key limitation identified in prior work.
+\end{enumerate}
+
+While building upon foundational work by researchers such as Borchjes et al. \citep{borchjes2023adversarial}, Oh et al. \citep{oh2023applying,oh2024employing}, and others, this research advances the field through systematic experimental methodology, clarified training and reward structures, and integrated reproducibility practices that enable broader community adoption and validation.
+
+% BIBLIOGRAPHY ADDITIONS
+% Note: These citations should be added to the main bibliography
+
+@book{sutton2018reinforcement,
+  title={Reinforcement learning: An introduction},
+  author={Sutton, Richard S and Barto, Andrew G},
+  year={2018},
+  publisher={MIT press},
+  edition={2nd}
+}
+
+@article{mnih2015human,
+  title={Human-level control through deep reinforcement learning},
+  author={Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and others},
+  journal={nature},
+  volume={518},
+  number={7540},
+  pages={529--533},
+  year={2015},
+  publisher={Nature Publishing Group}
+}
+
+@inproceedings{mnih2016asynchronous,
+  title={Asynchronous methods for deep reinforcement learning},
+  author={Mnih, Volodymyr and Badia, Adri{\`a} Puigdom{\`e}nech and Mirza, Mehdi and others},
+  booktitle={International conference on machine learning},
+  pages={1928--1937},
+  year={2016}
+}
+
+@article{schulman2017proximal,
+  title={Proximal policy optimization algorithms},
+  author={Schulman, John and Wolski, Filip and Dhariwal, Prafulla and others},
+  journal={arXiv preprint arXiv:1707.06347},
+  year={2017}
+}
+
+@book{alpcan2010network,
+  title={Network security: A decision and game-theoretic approach},
+  author={Alpcan, Tansu and Ba{\c{s}}ar, Tamer},
+  year={2010},
+  publisher={Cambridge University Press}
+}
+
+@article{roy2010survey,
+  title={A survey of game theory as applied to network security},
+  author={Roy, Sankardas and Ellis, Charles and Shiva, Sajjan and others},
+  journal={System and Information Sciences},
+  pages={1--15},
+  year={2010}
+}
+
+@article{sommer2010outside,
+  title={Outside the closed world: On using machine learning for network intrusion detection},
+  author={Sommer, Robin and Paxson, Vern},
+  journal={IEEE Symposium on Security and Privacy},
+  pages={305--316},
+  year={2010}
+}
+
+@article{goodfellow2014explaining,
+  title={Explaining and harnessing adversarial examples},
+  author={Goodfellow, Ian J and Shlens, Jonathon and Szegedy, Christian},
+  journal={arXiv preprint arXiv:1412.6572},
+  year={2014}
+}
+
+@article{madry2017towards,
+  title={Towards deep learning models resistant to adversarial attacks},
+  author={Madry, Aleksander and Makelov, Aleksandar and Schmidt, Ludwig and others},
+  journal={arXiv preprint arXiv:1706.06083},
+  year={2017}
+}
+
+% Add remaining bibliography entries here...

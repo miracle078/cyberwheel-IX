@@ -1,0 +1,22 @@
+@startuml config_architecture
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam componentStyle rectangle
+
+component "Cyberwheel Config\nYAML Hierarchy" as Root #FFFACD
+component "Environment\nNetwork topology\nHost configurations\nAttack patterns" as Env #E6FFE6
+component "Agent Config\nPPO parameters\nLearning rates\nNetwork architecture" as Agent #FFE6E6
+component "Mathematical Mapping\nγ, λ, ε\nFormal verification" as Math #E6F3FF
+component "Experimental Controls\nSeeds: {1,42,123,456,789}\nFixed red policy\nUnified logging" as ExpCtrl #F0F0F0
+component "Implementation Verification\nCode-config mapping\nParameter validation\nBaseline consistency" as ImplVerify #F0F0F0
+
+Root --> Env
+Root --> Agent
+Root --> Math
+Env --> ExpCtrl
+Agent --> ImplVerify
+Math --> ExpCtrl
+Math --> ImplVerify
+
+@enduml

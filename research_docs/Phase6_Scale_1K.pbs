@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=16:mem=32gb:ngpus=1
+#PBS -l walltime=48:00:00
+#PBS -N Phase6_Scale_1K
+#PBS -o /rds/general/user/moa324/home/projects/logs/Phase6_Scale_1K.out
+#PBS -e /rds/general/user/moa324/home/projects/logs/Phase6_Scale_1K.err
+
+cd /rds/general/user/moa324/home/projects/cyberwheel
+
+# Initialize conda environment
+eval "$(~/miniforge3/bin/conda shell.bash hook)"
+conda activate cyberwheel
+
+# Check GPU availability
+nvidia-smi
+echo "GPU Status checked"
+
+# Run large-scale training with GPU acceleration
+python -m cyberwheel train train_blue.yaml \
+    --network-config 1000-host-network.yaml --total-timesteps 20000000 --experiment-name Phase6_Scale_1K --num-envs 32 --device cuda --async-env true
+
+echo "Large-scale training completed for Phase6_Scale_1K"
+nvidia-smi  # Final GPU status

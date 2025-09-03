@@ -1,0 +1,38 @@
+% commands.sty - Mathematical notation commands
+% Common LaTeX commands for mathematical typesetting
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{commands}[2025/08/11 Mathematical notation commands]
+
+% Required packages
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+
+% Only define commands if they don't already exist
+\@ifundefined{bs}{\newcommand{\bs}[1]{\boldsymbol{#1}}}{}
+\@ifundefined{MC}{\newcommand{\MC}[1]{\mathcal{#1}}}{}
+\@ifundefined{TN}{\newcommand{\TN}[1]{\text{#1}}}{}
+\@ifundefined{RR}{\newcommand{\RR}{\mathbb{R}}}{}
+\@ifundefined{NN}{\newcommand{\NN}{\mathbb{N}}}{}
+\@ifundefined{ZZ}{\newcommand{\ZZ}{\mathbb{Z}}}{}
+\@ifundefined{QQ}{\newcommand{\QQ}{\mathbb{Q}}}{}
+\@ifundefined{CC}{\newcommand{\CC}{\mathbb{C}}}{}
+\@ifundefined{EE}{\newcommand{\EE}{\mathbb{E}}}{}
+\@ifundefined{PP}{\newcommand{\PP}{\mathbb{P}}}{}
+\@ifundefined{VV}{\newcommand{\VV}{\mathbb{V}}}{}
+\@ifundefined{what}{\newcommand{\what}[1]{\widehat{#1}}}{}
+
+% Common operators (these are safe to declare multiple times)
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+
+% Norms and inner products
+\@ifundefined{norm}{\newcommand{\norm}[1]{\left\|#1\right\|}}{}
+\@ifundefined{abs}{\newcommand{\abs}[1]{\left|#1\right|}}{}
+\@ifundefined{inner}{\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}}{}
+
+\endinput

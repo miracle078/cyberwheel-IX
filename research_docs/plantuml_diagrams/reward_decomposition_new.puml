@@ -1,0 +1,33 @@
+@startuml reward_decomposition_new
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 9
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+package "Blue Agent Reward Function R_t^(b)" {
+  component [**Deployment Reward**\nα₁ = 5.0\nSuccessful decoy placement] as DeployReward #E6F3FF
+
+  component [**Deception Reward**\nα₂ = 15.0\nRed attacks decoy] as DeceptionReward #E6FFE6
+
+  component [**Compromise Penalty**\nα₃ = -10.0\nRed compromises real host] as CompromisePenalty #FFE6E6
+
+  component [**Removal Cost**\nα₄ = -2.0\nDecoy removal action] as RemovalCost #FFF2CC
+}
+
+component [**Total Reward**\nR_t^(b) = Deploy + Deception\n- Compromise - Removal] as TotalReward #F0F0F0
+
+DeployReward --> TotalReward
+DeceptionReward --> TotalReward
+CompromisePenalty --> TotalReward
+RemovalCost --> TotalReward
+
+note right of DeceptionReward : Highest reward (α₂ >> α₁)\nEncourages strategic deception
+note right of CompromisePenalty : Strong penalty\nDiscourages real compromises
+
+@enduml

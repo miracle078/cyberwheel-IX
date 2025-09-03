@@ -1,0 +1,28 @@
+@startuml environment_interaction_enhanced
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+component [**Red Agent**\n$\pi^{(r)}$ fixed policy\nMITRE ATT&CK] as RedAgent #FFE6E6
+component [**Environment E**\nHosts $N_t \in \{0,1\}^N$\nDecoys $D_t \in \{0,1\}^D$\nNetwork State $S_t$] as Environment #E6FFE6
+component [**Blue Agent**\nPPO $\pi_\theta$\nAdaptive Defense] as BlueAgent #E6F3FF
+
+RedAgent --> Environment : Attacks $a_t^{(r)}$
+Environment --> BlueAgent : Observations $O_t$
+BlueAgent --> Environment : Defense Actions $a_t^{(b)}$\n(Deploy/Remove Decoys)
+
+component [**Detection Signals**\nReward Terms $R_t$\nShaping Signals] as Signals #F0F0F0
+
+Environment --> Signals : Detection Events
+Signals --> BlueAgent : Reward Feedback $R_t$
+
+note bottom of Signals : Detection/Compromise Signals\n$R_t = \sum \alpha_i \cdot r_i(t)$\nFeed reward computation
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml network_topology_new
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+package "DMZ Zone" {
+  component [**Firewall**\nEntry Point\nTraffic Control] as Firewall #FFE6E6
+  component [**Web Server**\nExternal Facing\nHTTP/HTTPS] as Web #E6F3FF
+  component [**Mail Server**\nSMTP/IMAP\nExternal Services] as Mail #E6F3FF
+}
+
+package "Internal Network A" {
+  component [**Host H1**\nInternal System\nUser Workstation] as H1 #E6FFE6
+  component [**Host H2**\nInternal System\nUser Workstation] as H2 #E6FFE6
+  component [**Database Server**\nInternal DB\nCritical Data] as DB1 #FFF2CC
+  component [**Decoy System**\nHoneypot\nDetection Trap] as Decoy1 #F0F0F0
+}
+
+package "Internal Network B" {
+  component [**Host H5**\nInternal System\nUser Workstation] as H5 #E6FFE6
+  component [**Host H6**\nInternal System\nUser Workstation] as H6 #E6FFE6
+  component [**Database Server**\nInternal DB\nCritical Data] as DB2 #FFF2CC
+  component [**Decoy System**\nHoneypot\nDetection Trap] as Decoy2 #F0F0F0
+}
+
+Firewall --> Web
+Firewall --> Mail
+Web --> H1
+H1 --> DB1
+H1 --> H5
+H5 --> DB2
+
+note right of Decoy1 : Strategic Decoy Placement\nAttracts Attackers
+note right of Decoy2 : Deception Layer\nEarly Detection
+
+@enduml

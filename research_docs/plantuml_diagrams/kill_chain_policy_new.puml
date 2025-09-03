@@ -1,0 +1,34 @@
+@startuml kill_chain_policy_new
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 9
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+component [**Discovery Phase**\nNetwork scanning\nService enumeration\nTopology mapping] as Discovery #FFE6E6
+component [**Reconnaissance**\nVulnerability assessment\nService identification\nTarget prioritization] as Recon #FFF2CC
+component [**Initial Access**\nExploit vulnerabilities\nCredential access\nPrivilege escalation] as Access #E6F3FF
+component [**Impact Phase**\nLateral movement\nData exfiltration\nSystem disruption] as Impact #E6FFE6
+
+component [**Transition Logic 1**\nSufficient topology\ninformation gathered] as Logic1 #F0F0F0
+component [**Transition Logic 2**\nExploitable vulnerability\nidentified] as Logic2 #F0F0F0
+component [**Transition Logic 3**\nCritical system access\nachieved] as Logic3 #F0F0F0
+component [**Final Objective**\nExecute attack impact\nphase] as Logic4 #F0F0F0
+
+Discovery --> Logic1 : Phase Complete
+Logic1 --> Recon : Advance
+Recon --> Logic2 : Phase Complete
+Logic2 --> Access : Advance
+Access --> Logic3 : Phase Complete
+Logic3 --> Impact : Advance
+Impact --> Logic4 : Attack Complete
+
+note bottom of Logic1 : State-based transitions\ndriven by network conditions
+note bottom of Logic4 : Deterministic policy\nthrough complete kill chain
+
+@enduml

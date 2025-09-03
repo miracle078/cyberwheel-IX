@@ -1,0 +1,99 @@
+@startuml config_architecture
+!define RECTANGLE class
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+@startuml config_architecture
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+package "Cyberwheel Configuration System" {
+  component [Cyberwheel Config
+YAML Hierarchy] as Root
+  
+  component [Environment
+Network topology
+Host configurations
+Attack patterns] as Env
+  
+  component [Agent Config
+PPO parameters
+Learning rates
+Network architecture] as Agent
+  
+  component [Mathematical Mapping
+γ, λ, ε
+Formal verification] as Math
+  
+  component [Experimental Controls
+Seeds: {1,42,123,456,789}
+Fixed red policy
+Unified logging] as ExpCtrl
+  
+  component [Implementation Verification
+Code-config mapping
+Parameter validation
+Baseline consistency] as ImplVerify
+}
+
+Root --> Env
+Root --> Agent
+Root --> Math
+Env --> ExpCtrl
+Agent --> ImplVerify
+Math --> ExpCtrl
+Math --> ImplVerify
+
+@enduml
+
+rectangle "Environment Configuration" as EnvConfig #E6FFE6 {
+  + Network Topology
+  + Host Configurations
+  + Attack Patterns
+  + Scenario Setup
+}
+
+rectangle "Agent Configuration" as AgentConfig #FFE6E6 {
+  + PPO Parameters
+  + Learning Rates
+  + Network Architecture
+  + Training Settings
+}
+
+rectangle "Mathematical Mapping" as MathMapping #E6F3FF {
+  + γ (discount factor)
+  + λ (GAE parameter)
+  + ε (PPO clip ratio)
+  + Formal Verification
+}
+
+rectangle "Experimental Controls" as ExpControls #F0F0F0 {
+  + Seeds: {1,42,123,456,789}
+  + Fixed Red Policy
+  + Unified Logging
+  + Reproducibility
+}
+
+rectangle "Implementation Verification" as ImplVerify #F5F5F5 {
+  + Code-Config Mapping
+  + Parameter Validation
+  + Baseline Consistency
+  + Testing Framework
+}
+
+Root --> EnvConfig
+Root --> AgentConfig
+Root --> MathMapping
+
+EnvConfig --> ExpControls
+AgentConfig --> ImplVerify
+MathMapping --> ExpControls
+MathMapping --> ImplVerify
+
+note bottom of Root : YAML-driven modular design enables\nsystematic experimental control through\nhierarchical parameter organization
+
+@enduml
