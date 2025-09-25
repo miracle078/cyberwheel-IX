@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-09-03T16:36:29.925488",
+  "validation_results": {
+    "file_structure": "PASS",
+    "latex_compilation": {
+      "enhanced_literature_review.tex": "NO_LATEX",
+      "formal_theoretical_framework.tex": "NO_LATEX",
+      "methodological_analysis_tables.tex": "NO_LATEX",
+      "ethical_transparency_statement.tex": "NO_LATEX",
+      "reproducibility_framework.tex": "NO_LATEX",
+      "scholarly_writing_standards.tex": "NO_LATEX",
+      "peer_review_preparation.tex": "NO_LATEX",
+      "comprehensive_integration_guide.tex": "NO_LATEX"
+    },
+    "bibliography": "INCOMPLETE",
+    "statistics": "PASS",
+    "content_completeness": "PASS",
+    "deficiencies_detail": {
+      "literature_review": "PASS",
+      "theoretical_framework": "PASS",
+      "methodological_rigor": "PASS",
+      "data_presentation": "PASS",
+      "argument_structure": "PASS",
+      "writing_quality": "PASS",
+      "ethical_standards": "PASS",
+      "reproducibility": "PASS",
+      "peer_review_prep": "PASS"
+    },
+    "publication_readiness": "NEARLY_READY",
+    "readiness_detail": {
+      "word_count_appropriate": "PASS",
+      "journal_formatting": "PASS",
+      "citation_completeness": "INCOMPLETE",
+      "figure_table_quality": "PASS",
+      "abstract_quality": "PASS",
+      "keyword_optimization": "PASS"
+    }
+  },
+  "critical_issues": [],
+  "warnings": [
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "pdflatex not found - cannot validate LaTeX compilation",
+    "Only 0.0% of bibliography entries are complete",
+    "Small effect size detected"
+  ],
+  "overall_status": "NEEDS_IMPROVEMENT",
+  "recommendations": [
+    "Complete and validate bibliography entries",
+    "Complete publication preparation requirements"
+  ]
+}

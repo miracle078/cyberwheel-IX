@@ -1,4 +1,4 @@
-@startuml ppo_algorithm_phases_enhanced
+@startuml ppo_algorithm_phases_new
 !theme plain
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontName Arial
@@ -10,16 +10,16 @@ skinparam component {
   BorderThickness 2
 }
 
-component [**Phase 1: Experience Collection**\nSample trajectories $\tau \sim \pi_\theta$\nStore $(s_t, a_t, r_t, s_{t+1})$\nCollect $T$ episodes] as Phase1 #E6F3FF
+component [**Phase 1: Experience Collection**\nSample trajectories\nStore (s,a,r,s') tuples\nCollect T episodes] as Phase1 #E6F3FF
 
-component [**Phase 2: Advantage Estimation**\nCompute $\hat{A}_t = \sum_{l=0}^{\infty} (\gamma\lambda)^l \delta_{t+l}$\nCalculate $R_t^{(\mathrm{total})} = \sum_{k=0}^{\infty} \gamma^k r_{t+k}$\nGAE: $\lambda = 0.95, \gamma = 0.99$] as Phase2 #E6FFE6
+component [**Phase 2: Advantage Estimation**\nCompute GAE advantages Â_t\nCalculate returns R_t^total\nλ = 0.95, γ = 0.99] as Phase2 #E6FFE6
 
-component [**Phase 3: Policy Update**\nMinibatch SGD on $\mathcal{L}^{CLIP}$\n$K$ epochs per update\nPPO clipped objective] as Phase3 #FFE6E6
+component [**Phase 3: Policy Update**\nMinibatch SGD\nK epochs per update\nPPO clipped objective] as Phase3 #FFE6E6
 
 Phase1 --> Phase2 : Trajectory Data
 Phase2 --> Phase3 : Advantages & Returns
-Phase3 --> Phase1 : Updated Policy $\pi_\theta$
+Phase3 --> Phase1 : Updated Policy π_θ
 
-note bottom of Phase3 : $\mathcal{L}^{CLIP}(\theta) = \mathbb{E}[ \min(r_t(\theta)\hat{A}_t, \mathrm{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t) ]$\n$\delta_t = r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$\n$\epsilon = 0.2, c_1 = 0.01, c_2 = 0.5$
+note bottom of Phase3 : L^CLIP(θ) = E[min(r_t Â_t, clip(r_t, 1-ε, 1+ε) Â_t)]\nε = 0.2 clipping parameter
 
 @enduml

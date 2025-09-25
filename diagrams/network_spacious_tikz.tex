@@ -1,0 +1,65 @@
+\documentclass[tikz,border=15pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+\begin{document}
+\begin{tikzpicture}[
+    host/.style={circle, draw=blue!60, fill=blue!15, minimum size=8mm, font=\scriptsize, thick},
+    decoy/.style={circle, draw=orange!70, fill=orange!15, minimum size=8mm, font=\scriptsize, thick, dashed},
+    compromised/.style={circle, draw=red!70, fill=red!20, minimum size=8mm, font=\scriptsize, thick},
+    subnet/.style={rounded rectangle, draw=gray!60, fill=gray!8, minimum width=25mm, minimum height=15mm, font=\small, thick},
+    agent/.style={rectangle, draw=black, fill=yellow!15, minimum width=20mm, minimum height=12mm, font=\small, rounded corners=3pt, thick},
+    node distance=3cm
+]
+
+% Title with lots of space
+\node[font=\Large\bfseries] at (0, 8) {Cyberwheel Environment};
+
+% Network Layer - widely spaced
+\node[subnet] (subnet1) at (-4, 5) {Subnet 1};
+\node[subnet] (subnet2) at (0, 5) {Subnet 2};  
+\node[subnet] (subnet3) at (4, 5) {Subnet 3};
+
+% Hosts - well separated within subnets
+\node[host] (h1) at (-4.5, 5.5) {$h_1$};
+\node[decoy] (d1) at (-3.5, 5.5) {$d_1$};
+
+\node[host] (h2) at (-0.5, 5.5) {$h_2$};
+\node[compromised] (h3) at (0.5, 5.5) {$h_3$};
+
+\node[host] (h4) at (3.5, 5.5) {$h_4$};
+\node[host] (h5) at (4.5, 5.5) {$h_5$};
+
+% Network backbone - well below subnets
+\draw[gray!60, thick] (-4, 4.2) -- (0, 4.2) -- (4, 4.2);
+\node[below, font=\small] at (0, 3.8) {Network Backbone};
+
+% Agents - lots of vertical space
+\node[agent] (blue) at (-4, 1) {\textbf{Blue}\\Defender};
+\node[agent] (red) at (4, 1) {\textbf{Red}\\Attacker};
+
+% Simple action arrows - no overlapping text
+\draw[->, thick, blue!70] (blue) to[out=70, in=250] (d1);
+\draw[->, thick, red!70, dashed] (red) to[out=110, in=290] (h3);
+
+% Legend - far to the right
+\node[rectangle, draw=black, fill=gray!10, minimum width=25mm, minimum height=20mm] at (7, 3) (legend) {};
+\node[above=2mm] at (legend.north) {\textbf{Legend}};
+
+\node[host] at (6.2, 3.3) {};
+\node[right] at (6.5, 3.3) {\scriptsize Clean};
+
+\node[decoy] at (6.2, 2.9) {};
+\node[right] at (6.5, 2.9) {\scriptsize Decoy};
+
+\node[compromised] at (6.2, 2.5) {};
+\node[right] at (6.5, 2.5) {\scriptsize Hacked};
+
+% Reward info - bottom center, isolated
+\node[rectangle, draw=orange!70, fill=orange!10, minimum width=30mm, minimum height=10mm] at (0, -1) (reward) {};
+\node[above=1mm] at (reward.north) {\textbf{Rewards}};
+\node[font=\small] at (reward.center) {Blue: +15 / -10\\Red: +success};
+
+\end{tikzpicture}
+\end{document}

@@ -1,4 +1,4 @@
-@startuml reward_decomposition_enhanced
+@startuml reward_decomposition_new
 !theme plain
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontName Arial
@@ -10,24 +10,24 @@ skinparam component {
   BorderThickness 2
 }
 
-package "Blue Agent Reward Function $R_t^{(b)}$" {
-  component [**Deployment Reward**\n$\alpha_1 = 5.0$\n$\mathbb{I}[a_t^{(b)} = \mathrm{deploy}] \times S_t^{(\mathrm{deploy})}$\nSuccessful decoy placement] as DeployReward #E6F3FF
+package "Blue Agent Reward Function R_t^(b)" {
+  component [**Deployment Reward**\nα₁ = 5.0\nSuccessful decoy placement] as DeployReward #E6F3FF
 
-  component [**Deception Reward**\n$\alpha_2 = 15.0$\n$D_t^{(\mathrm{decoy})}$\nRed attacks decoy] as DeceptionReward #E6FFE6
+  component [**Deception Reward**\nα₂ = 15.0\nRed attacks decoy] as DeceptionReward #E6FFE6
 
-  component [**Compromise Penalty**\n$\alpha_3 = -10.0$\n$D_t^{(\mathrm{success})}$\nRed compromises real host] as CompromisePenalty #FFE6E6
+  component [**Compromise Penalty**\nα₃ = -10.0\nRed compromises real host] as CompromisePenalty #FFE6E6
 
-  component [**Removal Cost**\n$\alpha_4 = -2.0$\n$\mathbb{I}[a_t^{(b)} = \mathrm{remove}]$\nDecoy removal action] as RemovalCost #FFF2CC
+  component [**Removal Cost**\nα₄ = -2.0\nDecoy removal action] as RemovalCost #FFF2CC
 }
 
-component [**Total Reward**\n$R_t^{(b)} = \alpha_1 \mathbb{I}[\mathrm{deploy}] S^{(\mathrm{deploy})} + \alpha_2 D^{(\mathrm{decoy})}$\n$-\alpha_3 D^{(\mathrm{success})} - \alpha_4 \mathbb{I}[\mathrm{remove}]]$ as TotalReward #F0F0F0
+component [**Total Reward**\nR_t^(b) = Deploy + Deception\n- Compromise - Removal] as TotalReward #F0F0F0
 
 DeployReward --> TotalReward
 DeceptionReward --> TotalReward
 CompromisePenalty --> TotalReward
 RemovalCost --> TotalReward
 
-note right of DeceptionReward : Highest reward $(\alpha_2 \gg \alpha_1)$\nEncourages strategic deception
+note right of DeceptionReward : Highest reward (α₂ >> α₁)\nEncourages strategic deception
 note right of CompromisePenalty : Strong penalty\nDiscourages real compromises
 
 @enduml

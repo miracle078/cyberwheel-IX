@@ -1,0 +1,52 @@
+% standalone wrapper for a tikz picture
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,shadows,patterns,arrows.meta,calc}
+\definecolor{cwAlert}{RGB}{220,50,50}
+\definecolor{cwFlow}{RGB}{50,120,220}
+\definecolor{cwDecoy}{RGB}{120,180,50}
+\definecolor{cwBorder}{RGB}{80,80,80}
+\definecolor{ImperialBlue}{RGB}{0,62,116}
+\definecolor{ImperialNavy}{RGB}{0,33,71}
+\definecolor{ImperialLightBlue}{RGB}{155,203,235}
+\begin{document}
+
+\begin{tikzpicture}[scale=1.0]
+    \def\radius{1.05}
+    % Percent -> angles (degrees)
+    \def\angW{217.44} % Wait (60.4%)
+    \def\angD{73.44}  % Deploy (20.4%)
+    \def\angR{69.12}  % Remove (19.2%)
+    \def\start{90}
+
+    % slice boundary angles (clockwise)
+    \pgfmathsetmacro{\aWend}{\start-\angW}
+    \pgfmathsetmacro{\aDend}{\aWend-\angD}
+    \pgfmathsetmacro{\aRend}{\aDend-\angR}
+
+    % draw slices
+    \draw[fill=cwDecoy!50, draw=cwDecoy, thick] (0,0) -- (\start:\radius) arc (\start:\aWend:\radius) -- cycle; % Wait
+    \draw[fill=cwFlow!50,  draw=cwFlow,  thick] (0,0) -- (\aWend:\radius) arc (\aWend:\aDend:\radius) -- cycle; % Deploy
+    \draw[fill=cwAlert!50, draw=cwAlert, thick] (0,0) -- (\aDend:\radius) arc (\aDend:\aRend:\radius) -- cycle; % Remove
+
+    % mid angles for leader lines
+    \pgfmathsetmacro{\midD}{\aWend-0.5*\angD}
+    \pgfmathsetmacro{\midR}{\aDend-0.5*\angR}
+
+    % Deploy label (left side)
+    \draw[-{latex[length=2mm,width=2mm]}, thick] ({\midD}:{\radius*0.95}) -- ({\midD}:{\radius*1.55});
+    \node[font=\bfseries\small, text=cwFlow, anchor=east] at ({\midD}:{\radius*1.65}) {Deploy 20.4\%};
+
+    % Remove label (right side)
+    \draw[-{latex[length=2mm,width=2mm]}, thick] ({\midR}:{\radius*0.95}) -- ({\midR}:{\radius*1.55});
+    \node[font=\bfseries\small, text=cwAlert, anchor=west] at ({\midR}:{\radius*1.65}) {Remove 19.2\%};
+
+    % Wait: force leader straight down and label directly below center
+    \draw[-{latex[length=2mm,width=2mm]}, thick] (0,{\radius*0.95*-1}) -- (0,{-\radius*1.35});
+    \node[font=\bfseries\small, text=cwDecoy, anchor=north] at (0,{-\radius*1.45}) {Wait 60.4\%};
+
+    % Title under chart
+    \node[below,font=\bfseries\large] at (0,-1.9) {Action Distribution};
+\end{tikzpicture}
+\end{document}

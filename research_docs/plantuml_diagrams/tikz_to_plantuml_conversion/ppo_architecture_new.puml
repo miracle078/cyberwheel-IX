@@ -1,4 +1,4 @@
-@startuml ppo_architecture_enhanced
+@startuml ppo_architecture_new
 !theme plain
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontName Arial
@@ -11,20 +11,20 @@ skinparam package {
 }
 
 package "PPO Training Architecture" {
-  component [**Cyberwheel Environment**\nNetwork State $S_t$\nAttack/Defense Actions\nReward Generation $R_t^{(b)}$] as Environment #E6FFE6
+  component [**Cyberwheel Environment**\nNetwork State S\nAttack/Defense Actions\nReward Generation R_t^(b)] as Environment #E6FFE6
 
-  component [**Blue Agent (PPO)**\nPolicy Network $\pi_\theta$\nValue Network $V_\phi$\nPPO Optimization] as BlueAgent #E6F3FF
+  component [**Blue Agent (PPO)**\nPolicy Network π_θ\nValue Network V_φ\nPPO Optimization] as BlueAgent #E6F3FF
 
   component [**Red Agent (Fixed)**\nMITRE ATT&CK Policy\nConsistent Adversary] as RedAgent #FFE6E6
 }
 
-BlueAgent --> Environment : $a_t^{(b)} \in \mathcal{A}^{(b)}$
-Environment --> BlueAgent : $s_t^{(b)} \in \mathcal{S}^{(b)}, r_t^{(b)} \in \mathbb{R}$
-RedAgent --> Environment : $a_t^{(r)} \in \mathcal{A}^{(r)}$
-Environment --> RedAgent : $s_t^{(r)} \in \mathcal{S}^{(r)}$
+BlueAgent --> Environment : Defense Actions a_t^(b)
+Environment --> BlueAgent : State s_t^(b) + Reward r_t^(b)
+RedAgent --> Environment : Attack Actions a_t^(r)
+Environment --> RedAgent : Observations s_t^(r)
 
 BlueAgent --> BlueAgent : Policy Update\nPPO Objective
 
-note bottom of BlueAgent : $J^{(b)}(\pi^{(b)}) = \mathbb{E}_{\pi}[\sum_{t=0}^{\infty} \gamma^t R_t^{(b)}]$\n$\mathcal{L}^{CLIP}(\theta) = \mathbb{E}[ \min(r_t(\theta)\hat{A}_t, \mathrm{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t) ]$\n$\epsilon = 0.2, \gamma = 0.99, \lambda = 0.95$
+note bottom of BlueAgent : J^(b)(π^(b)) = E[Σ γ^(h-1) R_h^(b)]\nClipped Surrogate Loss\nGAE Advantages
 
 @enduml
