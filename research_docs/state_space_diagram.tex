@@ -1,0 +1,88 @@
+% State Space Structure Diagram
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    box/.style={rectangle, draw, minimum width=25mm, minimum height=8mm, font=\scriptsize},
+    bluebox/.style={box, draw=blue!70, fill=blue!10},
+    redbox/.style={box, draw=red!70, fill=red!10},
+    component/.style={rectangle, draw=gray!50, fill=gray!5, minimum width=20mm, minimum height=5mm, font=\tiny}
+]
+
+% Blue Agent State Space
+\node[bluebox] (blue_title) at (-3, 3) {\textbf{Blue State Space} $\mathcal{S}^{(b)}$};
+\node[below=2mm] at (blue_title.south) {\tiny $d_b = 2|\mathcal{H}| + 2$};
+
+% Blue state components
+\node[component] (current_alerts) at (-4.5, 2) {Current Alerts\\$\{0,1\}^{|\mathcal{H}|}$};
+\node[component] (alert_history) at (-1.5, 2) {Alert History\\$\{0,1\}^{|\mathcal{H}|}$ (sticky)};
+\node[component] (metadata) at (-3, 1) {Metadata\\$[\text{headstart}, \text{decoys}]$};
+
+% State vector representation
+\node[draw=blue!50, align=left, font=\tiny] (state_vector) at (-3, 0) {
+    $S_t^{(b)} = \begin{bmatrix}
+    \text{alerts}_t^{\text{current}} \\
+    \text{alerts}_t^{\text{history}} \\
+    \text{metadata}_t
+    \end{bmatrix}$
+};
+
+% Connections for blue state
+\draw[->] (current_alerts) -- (state_vector);
+\draw[->] (alert_history) -- (state_vector);
+\draw[->] (metadata) -- (state_vector);
+
+% Red Agent State Space (simplified since it's fixed)
+\node[redbox] (red_title) at (3, 3) {\textbf{Red State Space} $\mathcal{S}^{(r)}$};
+\node[below=2mm] at (red_title.south) {\tiny Fixed adversary};
+
+\node[component] (network_discovery) at (3, 2.3) {Network Discovery};
+\node[component] (host_vulns) at (3, 1.8) {Host Vulnerabilities};
+\node[component] (compromise_status) at (3, 1.3) {Compromise Status};
+
+% Action Spaces
+\node[bluebox] (blue_actions) at (-3, -1.5) {\textbf{Blue Actions} $\mathcal{A}^{(b)}$};
+\node[component] (deploy) at (-4.5, -2.3) {Deploy Decoy\\on Subnet $N_j$};
+\node[component] (remove) at (-1.5, -2.3) {Remove Decoy\\from Subnet $N_j$};
+\node[component] (nothing) at (-3, -3) {Do Nothing};
+
+\node[redbox] (red_actions) at (3, -1.5) {\textbf{Red Actions} $\mathcal{A}^{(r)}$};
+\node[component] (scan) at (3, -2.1) {Scan Network};
+\node[component] (exploit) at (3, -2.5) {Exploit Host};
+\node[component] (lateral) at (3, -2.9) {Lateral Movement};
+
+% Action space size notation
+\node[below=2mm, font=\tiny] at (blue_actions.south) {$|\mathcal{A}^{(b)}| = 2|\mathcal{N}| + 1$};
+
+% Network representation
+\node[draw=gray!70, fill=gray!10, minimum width=50mm, minimum height=15mm] (network) at (0, 4.5) {};
+\node[above] at (network.north) {\textbf{Network Graph} $G = (V, E)$};
+
+% Sample network elements
+\node[circle, draw=blue!70, fill=blue!10, minimum size=4mm, font=\tiny] (h1) at (-1.5, 4.8) {$h_1$};
+\node[circle, draw=blue!70, fill=blue!10, minimum size=4mm, font=\tiny] (h2) at (-0.5, 4.8) {$h_2$};
+\node[circle, draw=red!70, fill=red!10, minimum size=4mm, font=\tiny, dashed] (d1) at (0.5, 4.8) {$d_1$};
+\node[circle, draw=red, fill=red!30, minimum size=4mm, font=\tiny] (h3) at (1.5, 4.8) {$h_3$};
+
+\node[font=\tiny, align=center] at (0, 4.2) {
+    Hosts: $\mathcal{H} = \{h_1, \ldots, h_n\}$\\
+    Subnets: $\mathcal{N} = \{N_1, \ldots, N_k\}$
+};
+
+% Observation flow
+\draw[->, thick, purple!70] (network) to[bend right=10] node[midway, left, font=\tiny] {Alerts} (current_alerts);
+\draw[->, thick, purple!70] (network) to[bend left=10] node[midway, right, font=\tiny] {State info} (red_title);
+
+% Legend
+\node[draw=black, minimum width=20mm, minimum height=15mm] (legend) at (5.5, 0) {};
+\node[above] at (legend.north) {\tiny\textbf{Legend}};
+\node[circle, draw=blue!70, fill=blue!10, minimum size=2mm] at (5, 0.3) {};
+\node[right, font=\tiny] at (5.2, 0.3) {Clean Host};
+\node[circle, draw=red!70, fill=red!10, minimum size=2mm, dashed] at (5, 0) {};
+\node[right, font=\tiny] at (5.2, 0) {Decoy};
+\node[circle, draw=red, fill=red!30, minimum size=2mm] at (5, -0.3) {};
+\node[right, font=\tiny] at (5.2, -0.3) {Compromised};
+
+\end{tikzpicture}
+\caption{Detailed state and action space structure in the Cyberwheel environment. The blue agent's state space has dimensionality $d_b = 2|\mathcal{H}| + 2$, combining immediate alerts, historical information, and metadata to enable both reactive and strategic defensive behaviors.}
+\label{fig:state_action_spaces}
+\end{figure>

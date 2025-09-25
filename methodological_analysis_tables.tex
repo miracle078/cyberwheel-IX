@@ -1,0 +1,55 @@
+% Table 1: Descriptive Statistics
+\begin{table}[H]
+\centering
+\caption{Descriptive Statistics for Agent Performance}
+\label{tab:descriptive_stats}
+\begin{tabular}{lcccccc}
+\toprule
+Agent & N & Mean & SD & Min & Max & Median \\
+\midrule
+BestProduction & 200 & 0.815 & 0.126 & 0.457 & 1.000 & 0.826 \\
+Random & 200 & 0.646 & 0.187 & 0.002 & 1.000 & 0.650 \\
+Random & 200 & 0.420 & 0.239 & 0.000 & 1.000 & 0.423 \\
+PPO & 200 & 0.537 & 0.219 & 0.000 & 1.000 & 0.540 \\
+Greedy & 200 & 0.608 & 0.173 & 0.134 & 1.000 & 0.604 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 2: ANOVA Results
+\begin{table}[H]
+\centering
+\caption{One-way ANOVA Results}
+\label{tab:anova_results}
+\begin{tabular}{lcccc}
+\toprule
+Source & df & F & p-value & Effect Size \\
+\midrule
+Between Groups & 4 & 114.008 & 0.0000 & $\eta^2 = 0.314$ \\
+Within Groups & 995 &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 3: Pairwise Comparisons
+\begin{table}[H]
+\centering
+\caption{Pairwise Comparisons with Bonferroni Correction}
+\label{tab:pairwise_comparisons}
+\begin{tabular}{lccccc}
+\toprule
+Comparison & Mean Diff & t-stat & p-value & p-adj & Cohen's d \\
+\midrule
+BestProduction vs Random & 0.168 & 10.588 & 0.0000 & 0.0000*** & 1.059 \\
+BestProduction vs Random & 0.395 & 20.690 & 0.0000 & 0.0000*** & 2.069 \\
+BestProduction vs PPO & 0.278 & 15.557 & 0.0000 & 0.0000*** & 1.556 \\
+BestProduction vs Greedy & 0.207 & 13.711 & 0.0000 & 0.0000*** & 1.371 \\
+Random vs Random & 0.227 & 10.569 & 0.0000 & 0.0000*** & 1.057 \\
+Random vs PPO & 0.110 & 5.388 & 0.0000 & 0.0000*** & 0.539 \\
+Random vs Greedy & 0.039 & 2.160 & 0.0314 & 0.3137 & 0.216 \\
+Random vs PPO & -0.117 & -5.093 & 0.0000 & 0.0000*** & -0.509 \\
+Random vs Greedy & -0.188 & -9.000 & 0.0000 & 0.0000*** & -0.900 \\
+PPO vs Greedy & -0.071 & -3.588 & 0.0004 & 0.0038** & -0.359 \\
+\bottomrule
+\end{tabular}
+\end{table}

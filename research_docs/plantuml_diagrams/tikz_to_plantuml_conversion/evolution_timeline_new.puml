@@ -1,8 +1,8 @@
-@startuml evolution_timeline_horizontal
+@startuml evolution_timeline
 !theme plain
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontName Arial
-skinparam defaultFontSize 11
+skinparam defaultFontSize 12
 
 skinparam component {
   BackgroundColor #F8F8F8
@@ -10,24 +10,15 @@ skinparam component {
   BorderThickness 2
 }
 
-skinparam arrow {
-  Color #666666
-  FontSize 10
-}
-
 component [**Generation 1**\nRule-Based\n1990s-2000s] as Gen1 #FFE6E6
-component [**Generation 2**\nMachine Learning\n2000s-2010s] as Gen2 #E6F3FF
-component [**Generation 3**\nAdaptive Learning\n2010s-Present] as Gen3 #E6FFE6
-component [**Generation 4**\nAdversarial Learning\nOur Work] as Gen4 #FFF2E6
+component [**Generation 2**\nML\n2000s-2010s] as Gen2 #E6F3FF
+component [**Generation 3**\nAdaptive\n2010s-Present] as Gen3 #E6FFE6
+component [**Generation 4**\nAdversarial\nOur Work] as Gen4 #FFF2E6
 
-' Horizontal layout
-Gen1 -right-> Gen2 : Evolution
-Gen2 -right-> Gen3 : Evolution
-Gen3 -right-> Gen4 : Evolution
+Gen1 --> Gen2 : Evolution
+Gen2 --> Gen3 : Evolution
+Gen3 --> Gen4 : Evolution
 
-note bottom of Gen1 : Static Rules\nSignature Detection
-note bottom of Gen2 : Supervised Learning\nPattern Recognition
-note bottom of Gen3 : Continuous Adaptation\nDynamic Threats
-note bottom of Gen4 : PPO-Based\nStrategic Defense
+note bottom : Timeline: 1990s → 2000s → 2010s → Present
 
 @enduml

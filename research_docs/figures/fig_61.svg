@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="11pt" height="16.429375pt" viewBox="0 0 11 16.429375" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2025-09-16T01:07:23.313861</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 16.429375 
+L 11 16.429375 
+L 11 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="text_1">
+   <!-- $\mathcal{G}$ -->
+   <g transform="translate(1.44 12.077813) scale(0.14 -0.14)">
+    <defs>
+     <path id="STIXNonUnicode-Italic-e233" d="M 2720 582 
+L 2688 595 
+Q 2246 243 1626 243 
+Q 1056 243 656 579 
+Q 256 915 256 1549 
+Q 256 2272 665 2915 
+Q 1075 3558 1699 3926 
+Q 2323 4294 2950 4294 
+Q 3296 4294 3504 4134 
+Q 3712 3974 3712 3693 
+Q 3712 3520 3561 3341 
+Q 3411 3162 3213 3162 
+Q 3072 3162 2973 3258 
+Q 2874 3354 2874 3482 
+Q 2874 3590 2925 3660 
+Q 2976 3731 3033 3760 
+Q 3091 3789 3142 3824 
+Q 3194 3859 3194 3904 
+Q 3194 3981 3101 4025 
+Q 3008 4070 2886 4070 
+Q 2381 4070 1913 3702 
+Q 1446 3334 1171 2707 
+Q 941 2182 941 1517 
+Q 941 1011 1171 764 
+Q 1402 518 1773 518 
+Q 2349 518 2829 928 
+Q 3309 1338 3424 2003 
+L 3571 2029 
+Q 3584 1965 3584 1811 
+Q 3584 1216 3305 547 
+Q 3027 -122 2541 -474 
+Q 2035 -838 1350 -838 
+Q 678 -838 365 -493 
+L 461 -371 
+Q 563 -486 816 -550 
+Q 1069 -614 1299 -614 
+Q 1734 -614 2134 -256 
+Q 2534 102 2720 582 
+z
+" transform="scale(0.015625)"/>
+    </defs>
+    <use xlink:href="#STIXNonUnicode-Italic-e233" transform="translate(0 0.90625)"/>
+   </g>
+  </g>
+ </g>
+</svg>
