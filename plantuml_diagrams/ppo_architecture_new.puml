@@ -1,0 +1,30 @@
+@startuml ppo_architecture_new
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam package {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+package "PPO Training Architecture" {
+  component [**Cyberwheel Environment**\nNetwork State S\nAttack/Defense Actions\nReward Generation R_t^(b)] as Environment #E6FFE6
+
+  component [**Blue Agent (PPO)**\nPolicy Network π_θ\nValue Network V_φ\nPPO Optimization] as BlueAgent #E6F3FF
+
+  component [**Red Agent (Fixed)**\nMITRE ATT&CK Policy\nConsistent Adversary] as RedAgent #FFE6E6
+}
+
+BlueAgent --> Environment : Defense Actions a_t^(b)
+Environment --> BlueAgent : State s_t^(b) + Reward r_t^(b)
+RedAgent --> Environment : Attack Actions a_t^(r)
+Environment --> RedAgent : Observations s_t^(r)
+
+BlueAgent --> BlueAgent : Policy Update\nPPO Objective
+
+note bottom of BlueAgent : J^(b)(π^(b)) = E[Σ γ^(h-1) R_h^(b)]\nClipped Surrogate Loss\nGAE Advantages
+
+@enduml

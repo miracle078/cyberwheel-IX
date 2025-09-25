@@ -1,0 +1,203 @@
+\documentclass[a0paper,landscape]{ImperialPoster}
+
+% Essential packages
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+
+% Compact list formatting
+\setlist{nosep,leftmargin=12pt,labelsep=8pt}
+
+% Define color scheme  
+\definecolor{imperialblue}{RGB}{0,62,116}
+\definecolor{imperialred}{RGB}{214,0,28}
+
+% Custom commands
+\newcommand{\alertignored}{80\%}
+
+% Reduce paragraph spacing
+\setlength{\parskip}{18pt}
+
+% Title information
+\postertitle{Adaptive Cyber Defense Through Reinforcement Learning: Dynamic Decoy Deployment Against Advanced Persistent Threats}
+\posterauthors{Mo Alkhazaleh \\ Department of Computing, Imperial College London}
+
+\begin{document}
+\titlesection
+
+\begin{multicols}{4}
+\raggedcolumns
+
+% COLUMN 1 - Problem & Method Overview
+\section{The Cyber Challenge}
+
+\textbf{Asymmetric Advantage:} Attackers need one vulnerability; defenders must protect everything
+
+\textbf{Alert Fatigue:} \alertignored{} of alerts ignored due to volume  
+
+\textbf{Static Defense Limitations:} Traditional approaches remain static while threats evolve
+
+\vspace{12pt}
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide2_problem_solution.png}
+\end{center}
+
+\section{Our Approach}
+
+\textbf{Reinforcement Learning Solution:} Dynamic decoy deployment that adapts to attack patterns
+
+\begin{itemize}
+\item Continuous learning from network interactions
+\item Strategic decoy placement optimization  
+\item Real-time adaptation to evolving threats
+\item Resource-efficient defensive strategies
+\end{itemize}
+
+\vspace{12pt}
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide3_reinforcement_learning.png}
+\end{center}
+
+% COLUMN BREAK
+\columnbreak
+
+% COLUMN 2 - Technical Method
+\section{PPO-Based Defense}
+
+\textbf{Proximal Policy Optimization} provides stable learning for defensive agents:
+
+\begin{itemize}
+\item Clipped surrogate objective prevents destructive updates
+\item Value function learning reduces gradient variance
+\item Sample-efficient learning from limited interactions
+\end{itemize}
+
+\vspace{12pt}
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide8_ppo_algorithm.png}
+\end{center}
+
+\section{Network Environment}
+
+\textbf{Cyberwheel Simulation:} Realistic enterprise network environment
+
+\vspace{12pt}
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide5_network_environment.png}
+\end{center}
+
+\textbf{Reward Structure:}
+$$R_t = 10v_r\mathbf{1}_{decoy} - v_r\mathbf{1}_{asset} - 2\mathbf{1}_{deploy} - \mathbf{1}_{remove}$$
+
+\begin{itemize}
+\item High reward for decoy interactions (successful deception)
+\item Penalty for real asset compromise  
+\item Action costs encourage efficient resource use
+\end{itemize}
+
+% COLUMN BREAK
+\columnbreak
+
+% COLUMN 3 - Results
+\section{Experimental Results}
+
+\textbf{Performance Comparison:}
+
+\vspace{8pt}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Detection Rate} & \textbf{False Positives} \\
+\midrule
+Random Placement & 45\% & 32\% \\
+Static Optimal & 62\% & 28\% \\
+Heuristic Rules & 58\% & 25\% \\
+\textbf{PPO Agent} & \textbf{78\%} & \textbf{15\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{12pt}
+\textbf{Learning Convergence:}
+
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{Training_Convergence.png}
+\end{center}
+
+\textbf{Key Performance Metrics:}
+\begin{itemize}
+\item 73\% improvement in detection rate over random
+\item 53\% reduction in false positive alerts
+\item Stable convergence within 500k training steps
+\item Consistent performance across network sizes
+\end{itemize}
+
+\section{Strategic Behaviors}
+
+The PPO agent learns sophisticated defensive strategies:
+
+\begin{itemize}
+\item \textbf{Predictive Placement:} Anticipates attacker movement patterns
+\item \textbf{Resource Optimization:} Balances coverage with computational cost
+\item \textbf{Adaptive Response:} Adjusts strategy based on attack sophistication
+\item \textbf{Vulnerability Prioritization:} Focuses protection on high-value assets
+\end{itemize}
+
+% COLUMN BREAK
+\columnbreak
+
+% COLUMN 4 - Impact & Future Work
+\section{Key Contributions}
+
+\textbf{1. Novel RL Framework}
+First application of PPO to dynamic decoy deployment in enterprise networks
+
+\textbf{2. Adaptive Defense Paradigm}  
+System learns and counters evolving attack strategies in real-time
+
+\textbf{3. Empirical Validation}
+Comprehensive evaluation against multiple threat models and baselines
+
+\textbf{4. Scalable Implementation}
+Demonstrated effectiveness on networks up to 100 nodes
+
+\vspace{12pt}
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide11_contributions.png}
+\end{center}
+
+\section{Research Impact}
+
+\textbf{Paradigm Shift:} From static to adaptive defense
+
+\textbf{Practical Benefits:}
+\begin{itemize}
+\item Significantly outperforms static approaches
+\item Reduces operational burden on security teams  
+\item Provides proactive rather than reactive security
+\item Scales to enterprise network complexity
+\end{itemize}
+
+\section{Future Directions}
+
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{ADAPTIVE_BLUE_DEFENSE_PRESENTATION/slide13_future_directions.png}
+\end{center}
+
+\textbf{Next Steps:}
+\begin{itemize}
+\item Multi-agent coordination across network segments
+\item Adversarial co-evolution with offensive agents
+\item Real-world deployment and validation
+\item Integration with existing security infrastructure
+\item Explainable AI for analyst decision support
+\end{itemize}
+
+\textbf{Long-term Vision:} Intelligent defensive systems that continuously adapt and evolve, maintaining effectiveness against sophisticated adversaries while minimizing false alarms.
+
+\end{multicols}
+
+\end{document}

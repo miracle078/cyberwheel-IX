@@ -1,0 +1,45 @@
+% thesis_style.sty - Unified stylistic layer for Cyberwheel thesis
+% Color palette & semantic boxes
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{thesis_style}[2025/09/01 Cyberwheel Thesis Style]
+
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\RequirePackage{ifthen}
+
+% Palette
+\definecolor{CWheelPrimary}{HTML}{4B7BEC}
+\definecolor{CWheelAccent}{HTML}{E67E22}
+\definecolor{CWheelNeutral}{HTML}{2D3436}
+\definecolor{CWheelSuccess}{HTML}{27AE60}
+\definecolor{CWheelDanger}{HTML}{C0392B}
+\definecolor{CWheelWarn}{HTML}{F1C40F}
+\definecolor{CWheelInfo}{HTML}{2980B9}
+
+% Semantic boxes
+\newtcolorbox{definitionbox}{colback=CWheelPrimary!5,colframe=CWheelPrimary,title=Definition}
+\newtcolorbox{assumptionbox}{colback=CWheelWarn!10,colframe=CWheelWarn!70!black,title=Assumption}
+\newtcolorbox{limitationbox}{colback=CWheelDanger!5,colframe=CWheelDanger,title=Limitation}
+\newtcolorbox{validationbox}{colback=CWheelSuccess!5,colframe=CWheelSuccess,title=Validation}
+\newtcolorbox{futureworkbox}{colback=CWheelAccent!10,colframe=CWheelAccent!80!black,title=Future Work}
+
+% Standard figure macro
+\newcommand{\stdfig}[2][]{\includegraphics[width=0.85\textwidth,#1]{#2}}
+
+% Claim status macro
+\newcommand{\claimstatus}[1]{%
+  \ifthenelse{\equal{#1}{validated}}{\textcolor{CWheelSuccess}{Validated}}{%
+  \ifthenelse{\equal{#1}{partial}}{\textcolor{CWheelWarn}{Partial}}{%
+  \ifthenelse{\equal{#1}{proposed}}{\textcolor{CWheelAccent}{Proposed}}{#1}}}}
+
+% Inline code
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Emphasis tiers
+\newcommand{\highlight}[1]{\textcolor{CWheelPrimary}{#1}}
+\newcommand{\risk}[1]{\textcolor{CWheelDanger}{#1}}
+
+% Glossary formatting helper
+\newcommand{\sym}[2]{\textbf{#1}\;--\;#2\\}
+
+\endinput

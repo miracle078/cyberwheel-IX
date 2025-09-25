@@ -1,0 +1,18 @@
+# Experiment registry manifest (seeds, configs, provenance)
+experiments:
+  phase2_low_decoy:
+    config: cyberwheel/data/configs/environment/train_blue_low_decoy.yaml
+    seeds: [1, 42, 123, 456, 789]
+    metrics: [return, stability, deception_efficacy]
+  phase2_high_decoy:
+    config: cyberwheel/data/configs/environment/train_blue_high_decoy.yaml
+    seeds: [1, 42, 123, 456, 789]
+    metrics: [return, deception_efficacy]
+  phase2_medium_hpc:
+    config: cyberwheel/data/configs/environment/train_blue_medium_hpc.yaml
+    seeds: [1, 42, 123, 456, 789]
+    metrics: [return]
+
+meta:
+  version: 0.1
+  notes: "Initial registry; update configs to ensure non-empty parameterization."

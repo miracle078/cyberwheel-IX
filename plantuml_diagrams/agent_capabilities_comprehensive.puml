@@ -1,0 +1,35 @@
+@startuml agent_capabilities_comprehensive
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam component {
+  BackgroundColor #F8F8F8
+  BorderColor #333333
+  BorderThickness 2
+}
+
+component [**Red Agent**\nMITRE ATT&CK\n295 Techniques\nFull Kill Chain] as RedAgent #FFE6E6
+
+component [**Discovery Phase**\nNetwork scanning\nService enumeration\nTopology mapping] as Discovery #FFF2CC
+component [**Reconnaissance**\nVulnerability assessment\nService identification\nTarget prioritization] as Recon #FFF2CC
+component [**Initial Access**\nExploit vulnerabilities\nCredential access\nPrivilege escalation] as Access #FFF2CC
+component [**Impact Phase**\nLateral movement\nData exfiltration\nSystem disruption] as Impact #FFF2CC
+
+component [**Blue Agent**\nStrategic Defense\n2|H|+1 Actions\nPPO Learning] as BlueAgent #E6F3FF
+
+RedAgent --> Discovery : Phase 1
+Discovery --> Recon : Transition
+Recon --> Access : Transition
+Access --> Impact : Transition
+
+BlueAgent --> RedAgent : Counter-strategies
+BlueAgent --> Discovery : Deploy Decoys
+BlueAgent --> Recon : Monitor Activity
+BlueAgent --> Access : Isolate Threats
+BlueAgent --> Impact : Contain Damage
+
+note right of BlueAgent : Adaptive Defense Actions:\n• Deploy Decoy\n• Remove Decoy\n• Monitor Network\n• Strategic Isolation
+
+@enduml

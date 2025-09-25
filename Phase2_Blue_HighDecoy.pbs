@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=8:mem=16gb
+#PBS -l walltime=24:00:00
+#PBS -N Phase2_Blue_HighDecoy
+#PBS -o /rds/general/user/moa324/home/projects/logs/Phase2_Blue_HighDecoy.out
+#PBS -e /rds/general/user/moa324/home/projects/logs/Phase2_Blue_HighDecoy.err
+
+cd /rds/general/user/moa324/home/projects/cyberwheel
+
+# Initialize conda environment
+eval "$(~/miniforge3/bin/conda shell.bash hook)"
+conda activate cyberwheel
+
+# Run Cyberwheel training
+python -m cyberwheel train train_blue.yaml \
+    --network-config 200-host-network.yaml --total-timesteps 5000000 --experiment-name Phase2_Blue_HighDecoy_HPC --num-envs 16
+
+echo "Training completed for Phase2_Blue_HighDecoy_HPC"

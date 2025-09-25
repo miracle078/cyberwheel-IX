@@ -1,0 +1,270 @@
+@startuml cyberwheel_architecture_overview
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 20
+
+package "Cyberwheel Framework Architecture" {
+  package "Multi-Agent Environment" as env #E3F2FD {
+    rectangle "Network Graph G(V,E)" as network {
+      node "Hosts (H)" as hosts #4CAF50
+      node "Subnets (S)" as subnets #2196F3
+      node "Routers (R)" as routers #FF9800
+      node "Decoys (D)" as decoys #9C27B0
+      hosts -- subnets
+      subnets -- routers
+      routers -- decoys
+    }
+    
+    rectangle "MITRE ATT&CK\n295 Techniques" as mitre #FFCDD2
+    rectangle "Detection System" as detection #C8E6C9
+    
+    network --> mitre
+    network --> detection
+  }
+
+  package "Agent Framework" as agents #FFF3E0 {
+    rectangle "Red Agent (Attacker)" as red #FFEBEE {
+      rectangle "State Space: 7×|discovered hosts|" as red_state
+      rectangle "Action Space: techniques × hosts" as red_action
+      rectangle "Kill Chain Progression" as killchain
+      red_state --> red_action
+      red_action --> killchain
+    }
+    
+    rectangle "Blue Agent (Defender)" as blue #E3F2FD {
+      rectangle "State Space: 2|H| + 2" as blue_state
+      rectangle "Action Space: 2|S||D| + |H| + 1" as blue_action  
+      rectangle "Deception Strategy" as deception
+      blue_state --> blue_action
+      blue_action --> deception
+    }
+    
+    red <--> blue : Adversarial Interaction
+  }
+
+  package "Learning Framework" as learning #F3E5F5 {
+    rectangle "PPO Algorithm" as ppo #E1BEE7
+    rectangle "Multi-Seed Validation" as validation #BA68C8
+    ppo --> validation
+  }
+
+  env --> agents
+  agents --> learning
+  learning --> env : Policy Updates
+}
+
+note right of env : Simulation scales\n15 to 10,000 hosts
+note bottom of ppo : Current implemented learning algorithm
+@enduml
+
+@startuml seven_phase_methodology
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 15
+
+skinparam activity {
+  BackgroundColor #E3F2FD
+  BorderColor #1976D2
+  FontColor #000000
+}
+
+start
+
+:Phase 1: System Validation;
+note right : 15-host network\n1,000 timesteps\nBaseline validation
+
+:Phase 2: Blue Agent Mastery;
+note right : 8 defensive variants\n10-50M timesteps\n200-host networks
+
+:Phase 3: Red Agent Development;
+note right : 5 attack strategies\nMITRE ATT&CK integration\nRL & heuristic methods
+
+:Phase 4: Cross-Evaluation Matrix;
+note right : 40 combinations\n(8 blue × 5 red)\nSystematic performance analysis
+
+:Phase 5: (Reserved) Advanced Co-Evolution Methods; 
+note right : Deferred future work\n(not implemented in current study)
+
+:Phase 6: Scalability Validation;
+note right : 1K, 5K, 10K hosts\nEnterprise-scale testing\nPerformance characterization
+
+:Phase 7: Statistical Analysis;
+note right : Multi-seed validation\nConfidence intervals\nPublication readiness
+
+stop
+
+floating note left : Total: 32M+ training steps\nComprehensive experimental coverage
+@enduml
+
+@startuml experimental_results_overview
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+rectangle "Cyberwheel Experimental Validation Results" as title #1976D2
+
+package "Training Performance" as training #E3F2FD {
+  rectangle "32,000,000\nTotal Training Steps" as steps #4CAF50
+  rectangle "33,686\nTotal Episodes" as episodes #2196F3  
+  rectangle "100%\nSuccess Rate" as success #4CAF50
+  rectangle "995.0 Points\nMax Improvement" as improvement #FF9800
+}
+
+package "Agent Configuration Results" as configs #FFF3E0 {
+  rectangle "Phase1_Validation_HPC\n995.0 improvement" as phase1 #4CAF50
+  rectangle "Phase2_Blue_PerfectDetection\n473.4 improvement" as perfect #2196F3
+  rectangle "Phase2_Blue_LowDecoy\n947.1 improvement" as lowdecoy #4CAF50
+  rectangle "Phase2_Blue_Small\n627.1 improvement" as small #FF9800
+}
+
+package "Key Findings" as findings #E8F5E8 {
+  rectangle "Deception > Detection\nStrategies" as deception #4CAF50
+  ' Removed unimplemented SULI claim
+  rectangle "Enterprise Scale\n(Planned Stress Tests)" as scale #FF9800
+  rectangle "Statistical Inference\n(Baseline In Progress)" as stats #9C27B0
+}
+
+title --> training
+title --> configs  
+title --> findings
+
+training --> configs : Performance Analysis
+configs --> findings : Strategic Insights
+
+note bottom of findings : All experiments achieved\npositive learning improvements
+@enduml
+
+@startuml reward_system_architecture
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 10
+
+package "Reward System Architecture" as rewards {
+  
+  package "Red Agent Rewards" as red_rewards #FFEBEE {
+    rectangle "Technique Success\n+α_i points" as tech_success #4CAF50
+    rectangle "Asset Compromise\n+β points" as asset_comp #2196F3
+    rectangle "Detection Penalty\n-λ points" as detection_pen #F44336
+    
+    rectangle "Total Red Reward" as red_total #FFA726
+    tech_success --> red_total
+    asset_comp --> red_total
+    detection_pen --> red_total
+  }
+
+  package "Blue Agent Rewards" as blue_rewards #E3F2FD {
+    rectangle "Deception Success\n+10× multiplier" as deception #4CAF50
+    rectangle "Asset Protection\n+points" as protection #81C784  
+    rectangle "Resource Costs\n-deployment/maintenance" as costs #F44336
+    
+    rectangle "Total Blue Reward" as blue_total #2196F3
+    deception --> blue_total
+    protection --> blue_total
+    costs --> blue_total
+  }
+
+  package "Learning Dynamics" as dynamics #F3E5F5 {
+    rectangle "Adversarial Optimization" as adversarial #E1BEE7
+    rectangle "Policy Gradients" as gradients #CE93D8
+    rectangle "Advantage Estimation" as advantage #BA68C8
+    
+    adversarial --> gradients
+    gradients --> advantage
+  }
+
+  red_rewards <--> blue_rewards : Zero-sum competition
+  red_rewards --> dynamics
+  blue_rewards --> dynamics
+}
+
+note right of deception : 10× multiplier creates\nstrong deception incentive
+note left of red_total : Balances stealth\nvs. progress
+@enduml
+
+@startuml network_topology_representation
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+package "Network Representation G = (V, E)" as network {
+  
+  package "Vertex Set V = H ∪ S ∪ R" as vertices {
+    package "Hosts (H)" as hosts #E8F5E8 {
+      node "Workstations" as workstations #4CAF50
+      node "Servers" as servers #2196F3
+      node "Decoy Systems" as decoys #9C27B0
+    }
+    
+    package "Subnets (S)" as subnets #FFF3E0 {
+      node "DMZ" as dmz #FF9800
+      node "Internal Network" as internal #FF9800
+      node "Critical Assets" as critical #FF9800
+    }
+    
+    package "Routers (R)" as routers #FFEBEE {
+      node "Gateway Router" as gateway #F44336
+      node "Internal Routers" as int_routers #F44336
+    }
+  }
+
+  package "Edge Set E ⊆ V × V" as edges {
+    rectangle "Network Connections" as connections #E3F2FD
+    rectangle "Routing Policies" as policies #E3F2FD
+    rectangle "Access Controls" as access #E3F2FD
+  }
+
+  package "Host State Vector" as state #F3E5F5 {
+    rectangle "h_i = ⟨IP, OS, Services, Vulnerabilities, Compromised, Decoy⟩" as host_state
+  }
+
+  vertices --> edges
+  edges --> state
+  
+  workstations --> dmz
+  servers --> internal
+  decoys --> critical
+  
+  dmz --> gateway
+  internal --> int_routers
+  critical --> int_routers
+}
+
+note bottom : Scales from 15 hosts\nto 10,000+ enterprise networks
+@enduml
+
+@startuml ppo_algorithm_detail
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 15
+
+start
+
+:Initialize Policy π_θ;
+
+while (Training Episode t ≤ T) is (continue)
+  :Collect Experience;
+  note right : Sample actions from π_θ(s)\nObserve rewards R_t\nStore transitions
+  
+  :Compute Advantages;
+  note right : GAE: Â_t = Σ(γλ)^l δ_{t+l}\nwhere δ = R + γV(s') - V(s)
+  
+  :Update Policy;
+  note right : PPO Loss:\nL = E[min(r_t(θ)Â_t, clip(r_t, 1-ε, 1+ε)Â_t)]
+  
+  :Value Function Update;
+  note right : L_V = 1/2(V_θ(s) - R_total)^2
+  
+  :Entropy Regularization;
+  note right : L_ent = -β_ent Σ π(a|s) log π(a|s)
+  
+  :Total Loss = L_PPO + 0.5×L_V + 0.01×L_ent;
+  
+  :Gradient Update: θ ← θ - α∇L_total;
+endwhile (complete)
+
+:Evaluate Final Policy;
+
+stop
+
+floating note right : Clipping parameter ε = 0.2\nGAE parameter λ = 0.95\nEntropy coefficient β_ent = 0.01
+@enduml
+
+' Removed SULI methodology detailed diagram (future work)

@@ -1,0 +1,57 @@
+graph TD
+    %% Network Infrastructure
+    Internet([Internet])
+    FW[Firewall]
+    
+    %% Subnets
+    subgraph DMZ ["DMZ N₁"]
+        w1((w₁))
+        d1{{d₁}}
+    end
+    
+    subgraph Internal ["Internal N₂"] 
+        w2((w₂))
+        w3((w₃))
+    end
+    
+    subgraph Critical ["Critical N₃"]
+        w4((w₄))
+        w5((w₅))
+    end
+    
+    %% Agents
+    RedAgent["🔴 Red Agent<br/>Fixed π⁽ʳ⁾<br/>MITRE ATT&CK"]
+    BlueAgent["🔵 Blue Agent<br/>PPO π⁽ᵇ⁾"]
+    
+    %% Reward System
+    Rewards["⚖️ Adversarial Rewards<br/>Blue: +15/-10 | Red: +10/-5"]
+    
+    %% Network Connections
+    Internet --> FW
+    FW --> DMZ
+    FW --> Internal
+    FW --> Critical
+    
+    %% Agent Actions
+    RedAgent -.->|attack| w3
+    BlueAgent -->|deploy| d1
+    
+    %% Reward Connections
+    RedAgent <--> Rewards
+    BlueAgent <--> Rewards
+    
+    %% Styling
+    classDef host fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef decoy fill:#fff3e0,stroke:#e65100,stroke-width:2px,stroke-dasharray: 5 5
+    classDef compromised fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef agent fill:#f3e5f5,stroke:#4a148c,stroke-width:3px
+    classDef subnet fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef firewall fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef internet fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    
+    class w1,w2,w4,w5 host
+    class d1 decoy
+    class w3 compromised
+    class RedAgent,BlueAgent agent
+    class FW firewall
+    class Internet internet
